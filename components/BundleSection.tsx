@@ -36,7 +36,7 @@ export function BundleSection() {
           {/* CTA */}
           <div className="text-center">
             <a
-              href="#checkout"
+              href="https://buy.stripe.com/test_00w3cxaiz6BX3ws7D8ao805"
               className="button-maroon inline-block text-lg"
             >
               Get the Full Team — $89

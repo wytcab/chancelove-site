@@ -48,7 +48,7 @@ export function GuideSection() {
             <p className="text-4xl font-bold text-maroon">$39</p>
           </div>
           <a
-            href="#checkout"
+            href="https://buy.stripe.com/test_14AdRbbmDf8taYUf5Aao806"
             className="button-maroon inline-block mt-6 sm:mt-0"
           >
             Get the Playbook — $39

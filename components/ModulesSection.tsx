@@ -6,26 +6,31 @@ export function ModulesSection() {
       id: 'marketing',
       title: 'The Marketing Intern',
       description: 'Social content, campaign briefs, copywriting, brand voice — your AI handles the output, you handle the strategy.',
+      url: 'https://buy.stripe.com/test_8x228tgGX0dzaYUe1wao802',
     },
     {
       id: 'sales',
       title: 'The Sales Intern',
       description: 'Lead research, outreach drafts, follow-up sequences, CRM notes — never let a lead go cold again.',
+      url: 'https://buy.stripe.com/test_4gM28t8ar1hDffae1wao804',
     },
     {
       id: 'operations',
       title: 'The Ops Intern',
       description: 'SOPs, scheduling, vendor communication, process documentation — the admin work that eats your week.',
+      url: 'https://buy.stripe.com/test_3cI3cx76n0dz5EA3mSao801',
     },
     {
       id: 'finance',
       title: 'The Finance Intern',
       description: 'Expense tracking, report summaries, invoice follow-ups, financial narrative — numbers without the headache.',
+      url: 'https://buy.stripe.com/test_4gM6oJ3UbaSdaYUaPkao803',
     },
     {
       id: 'hr',
       title: 'The HR Intern',
       description: 'Job descriptions, interview question banks, onboarding docs, policy drafts — people ops without a people ops team.',
+      url: 'https://buy.stripe.com/test_14AaEZ4Yfe4p0kgf5Aao800',
     },
   ]
 
@@ -57,7 +62,7 @@ export function ModulesSection() {
               <div className="flex items-center justify-between">
                 <span className="text-2xl font-bold text-gold">$19</span>
                 <a
-                  href="#checkout"
+                  href={module.url}
                   className="button-outline inline-block text-sm py-2 px-4"
                 >
                   Get Module →

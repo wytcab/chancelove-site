@@ -25,7 +25,7 @@ export function Hero() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
           <a
-            href="#checkout"
+            href="https://buy.stripe.com/test_14AdRbbmDf8taYUf5Aao806"
             className="button-maroon inline-block"
           >
             Get the Playbook — $39
