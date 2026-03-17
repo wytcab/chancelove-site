@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs font-semibold tracking-wider uppercase text-gold;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold leading-tight;
+  }
+
+  .button-maroon {
+    @apply px-6 py-3 bg-maroon text-white font-semibold rounded-lg hover:bg-red-900 transition-colors;
+  }
+
+  .button-outline {
+    @apply px-6 py-3 border-2 border-maroon text-maroon font-semibold rounded-lg hover:bg-maroon hover:text-white transition-colors;
+  }
+
+  .check-icon {
+    @apply w-5 h-5 inline-block mr-3 text-maroon flex-shrink-0;
+  }
+}
