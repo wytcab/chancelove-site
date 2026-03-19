@@ -7,7 +7,7 @@ export function ModulesSection() {
       title: 'The Marketing Intern',
       name: 'Morty',
       description: 'Blog strategy, email campaigns, social media calendar, content ideation, copywriting — output at scale without the overhead.',
-      url: 'https://buy.stripe.com/test_8x228tgGX0dzaYUe1wao802',
+      url: 'https://buy.stripe.com/14AbJ16rk7xMeDH3nu2Nq00',
       available: true,
     },
     {
@@ -15,7 +15,7 @@ export function ModulesSection() {
       title: 'The Sales Intern',
       name: 'Simon',
       description: 'Lead qualification, email sequences, objection handling, discovery call prep, follow-up strategy — the pipeline stays moving.',
-      url: 'https://buy.stripe.com/test_4gM28t8ar1hDffae1wao804',
+      url: 'https://buy.stripe.com/8x26oH6rkbO2brv6zG2Nq01',
       available: true,
     },
     {
@@ -23,7 +23,7 @@ export function ModulesSection() {
       title: 'The Ops Intern',
       name: 'Oscar',
       description: 'SOPs, scheduling, vendor communication, meeting summaries, internal updates — order where there was chaos.',
-      url: 'https://buy.stripe.com/test_3cI3cx76n0dz5EA3mSao801',
+      url: 'https://buy.stripe.com/fZu3cv3f89FUanrcY42Nq04',
       available: true,
     },
     {
@@ -31,7 +31,7 @@ export function ModulesSection() {
       title: 'The Finance Intern',
       name: 'Frank',
       description: 'Expense tracking, invoice follow-ups, financial summaries, budget drafts — the numbers, finally manageable.',
-      url: 'https://buy.stripe.com/test_4gM6oJ3UbaSdaYUaPkao803',
+      url: 'https://buy.stripe.com/5kQ3cv5ng05kgLP1fm2Nq02',
       available: true,
     },
     {
@@ -39,7 +39,7 @@ export function ModulesSection() {
       title: 'The HR Intern',
       name: 'Hudson',
       description: 'Job descriptions, interview banks, onboarding docs, policy drafts — people operations without a people ops team.',
-      url: 'https://buy.stripe.com/test_14AaEZ4Yfe4p0kgf5Aao800',
+      url: 'https://buy.stripe.com/4gMaEX8zs7xMgLP6zG2Nq03',
       available: true,
     },
     {
