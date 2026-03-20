@@ -3,19 +3,29 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-// Generate heart surface points using parametric form
-// Maps (u, v) → 3D heart surface point
-function heartSurface(u: number, v: number): THREE.Vector3 {
-  // u: 0..2π (longitude around the heart outline)
-  // v: 0..2π (rotation around the heart's own axis — makes it 3D)
-  const x = 16 * Math.pow(Math.sin(u), 3)
-  const y = 13 * Math.cos(u) - 5 * Math.cos(2 * u) - 2 * Math.cos(3 * u) - Math.cos(4 * u)
-  // Revolve around Y axis to give 3D volume
-  const r = Math.sqrt(x * x) * 0.5 // radius at this u
-  const sx = (x * Math.cos(v)) * 0.08
-  const sy = y * 0.08
-  const sz = (r * Math.sin(v)) * 0.8
-  return new THREE.Vector3(sx, sy, sz)
+// Build a flat geometric heart outline as Vector2 points
+function buildHeartShape(scale: number): THREE.Vector2[] {
+  const pts: THREE.Vector2[] = []
+  const steps = 200
+  for (let i = 0; i <= steps; i++) {
+    const t = (i / steps) * Math.PI * 2
+    const x = 16 * Math.pow(Math.sin(t), 3)
+    const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)
+    pts.push(new THREE.Vector2(x * scale, y * scale))
+  }
+  return pts
+}
+
+// Build a 3D heart ring at a given Z depth and XY scale
+function buildHeartRing(xyScale: number, z: number, steps = 200): THREE.Vector3[] {
+  const pts: THREE.Vector3[] = []
+  for (let i = 0; i <= steps; i++) {
+    const t = (i / steps) * Math.PI * 2
+    const x = 16 * Math.pow(Math.sin(t), 3)
+    const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)
+    pts.push(new THREE.Vector3(x * xyScale, y * xyScale, z))
+  }
+  return pts
 }
 
 export function WireframeHeart() {
@@ -29,8 +39,8 @@ export function WireframeHeart() {
     const h = mount.clientHeight || 520
 
     const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100)
-    camera.position.z = 5.5
+    const camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 100)
+    camera.position.z = 6.5
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
     renderer.setSize(w, h)
@@ -41,136 +51,182 @@ export function WireframeHeart() {
     const group = new THREE.Group()
     scene.add(group)
 
-    const uSegs = 80  // longitude lines
-    const vSegs = 40  // latitude lines
+    // ── Concentric heart rings (like the reference image) ─────
+    // 5 rings: outermost is brightest, inner ones dimmer
+    const ringCount = 6
+    const baseScale = 0.082
+    const rings: THREE.Line[] = []
 
-    // Build grid of surface points
-    const pts: THREE.Vector3[][] = []
-    for (let i = 0; i <= uSegs; i++) {
-      pts[i] = []
-      for (let j = 0; j <= vSegs; j++) {
-        const u = (i / uSegs) * Math.PI * 2
-        const v = (j / vSegs) * Math.PI * 2
-        pts[i][j] = heartSurface(u, v)
-      }
+    for (let r = 0; r < ringCount; r++) {
+      const t = r / (ringCount - 1) // 0 = outermost, 1 = innermost
+      const xyScale = baseScale * (1.0 - t * 0.32)
+      const z = (r - ringCount / 2) * 0.22 // spread in Z for 3D depth
+
+      const pts = buildHeartRing(xyScale, z)
+      const geo = new THREE.BufferGeometry().setFromPoints(pts)
+
+      // Outer rings: bright red/maroon. Inner: dimmer
+      const brightness = r === 0 ? 1.0 : r === 1 ? 0.75 : 0.45 - t * 0.2
+      const col = r <= 1
+        ? new THREE.Color(1.0 * brightness, 0.05 * brightness, 0.05 * brightness)
+        : new THREE.Color(0.55 * brightness, 0.05, 0.05)
+
+      const mat = new THREE.LineBasicMaterial({
+        color: col,
+        transparent: true,
+        opacity: r === 0 ? 1.0 : r === 1 ? 0.85 : 0.5 - t * 0.15,
+      })
+      const line = new THREE.Line(geo, mat)
+      group.add(line)
+      rings.push(line)
     }
 
-    // Latitude lines (constant u, vary v) — maroon
-    for (let i = 0; i < uSegs; i += 4) {
-      const row: THREE.Vector3[] = []
-      for (let j = 0; j <= vSegs; j++) row.push(pts[i][j].clone())
-      const geo = new THREE.BufferGeometry().setFromPoints(row)
-      const t = i / uSegs
-      const col = new THREE.Color().lerpColors(
-        new THREE.Color(0x8B1A1A),
-        new THREE.Color(0xC9A84C),
-        t
-      )
+    // ── Glow passes on outermost ring ──────────────────────────
+    for (let g = 1; g <= 3; g++) {
+      const glowScale = baseScale * (1.0 + g * 0.025)
+      const pts = buildHeartRing(glowScale, (0 - ringCount / 2) * 0.22)
+      const geo = new THREE.BufferGeometry().setFromPoints(pts)
       group.add(new THREE.Line(geo, new THREE.LineBasicMaterial({
-        color: col, transparent: true, opacity: 0.55,
+        color: new THREE.Color(1.0, 0.1, 0.1),
+        transparent: true,
+        opacity: 0.12 / g,
       })))
     }
 
-    // Longitude lines (constant v, vary u) — gold
-    for (let j = 0; j < vSegs; j += 3) {
-      const col: THREE.Vector3[] = []
-      for (let i = 0; i <= uSegs; i++) col.push(pts[i][j].clone())
-      const geo = new THREE.BufferGeometry().setFromPoints(col)
-      group.add(new THREE.Line(geo, new THREE.LineBasicMaterial({
-        color: 0xC9A84C, transparent: true, opacity: 0.3,
-      })))
-    }
+    // ── Circuit board traces along the outermost ring ──────────
+    const tracePts = buildHeartRing(baseScale, (0 - ringCount / 2) * 0.22, 200)
+    const traceCount = 55
+    const traceGeo = new THREE.BufferGeometry()
+    const tracePos: number[] = []
 
-    // Bright front outline (v = 0 slice)
-    const outlinePts: THREE.Vector3[] = []
-    for (let i = 0; i <= uSegs; i++) outlinePts.push(pts[i][0].clone())
-    group.add(new THREE.Line(
-      new THREE.BufferGeometry().setFromPoints(outlinePts),
-      new THREE.LineBasicMaterial({ color: 0xFF2020, transparent: true, opacity: 0.9 })
-    ))
-    // Glow layer
-    const glowPts = outlinePts.map(p => new THREE.Vector3(p.x * 1.02, p.y * 1.02, p.z))
-    group.add(new THREE.Line(
-      new THREE.BufferGeometry().setFromPoints(glowPts),
-      new THREE.LineBasicMaterial({ color: 0xFF6666, transparent: true, opacity: 0.25 })
-    ))
+    for (let tc = 0; tc < traceCount; tc++) {
+      const idx = Math.floor((tc / traceCount) * (tracePts.length - 1))
+      const pt = tracePts[idx]
+      const next = tracePts[Math.min(idx + 1, tracePts.length - 1)]
 
-    // Surface vertex dots
-    const dotPositions: number[] = []
-    for (let i = 0; i <= uSegs; i += 4) {
-      for (let j = 0; j <= vSegs; j += 4) {
-        dotPositions.push(pts[i][j].x, pts[i][j].y, pts[i][j].z)
+      // Direction along the ring
+      const dir = new THREE.Vector3().subVectors(next, pt).normalize()
+      // Perpendicular (outward)
+      const perp = new THREE.Vector3(-dir.y, dir.x, 0).normalize()
+      const len = 0.04 + Math.random() * 0.10
+
+      // Short perpendicular tick mark
+      const start = pt.clone()
+      const end = pt.clone().addScaledVector(perp, len * (Math.random() > 0.5 ? 1 : -1))
+
+      tracePos.push(start.x, start.y, start.z, end.x, end.y, end.z)
+
+      // Dot at end of trace
+      if (Math.random() > 0.4) {
+        tracePos.push(end.x, end.y, end.z)
+        const dot = end.clone().addScaledVector(perp, 0.015)
+        tracePos.push(dot.x, dot.y, dot.z)
       }
     }
-    const dotGeo = new THREE.BufferGeometry()
-    dotGeo.setAttribute('position', new THREE.Float32BufferAttribute(dotPositions, 3))
-    group.add(new THREE.Points(dotGeo, new THREE.PointsMaterial({
-      color: 0xC9A84C, size: 0.028, transparent: true, opacity: 0.9,
+    traceGeo.setAttribute('position', new THREE.Float32BufferAttribute(tracePos, 3))
+    group.add(new THREE.LineSegments(traceGeo, new THREE.LineBasicMaterial({
+      color: 0xFF2222,
+      transparent: true,
+      opacity: 0.55,
     })))
 
-    // Fragment triangles dissolving off upper-right
-    type Frag = { line: THREE.Line; vx: number; vy: number; vr: number; ox: number; oy: number }
-    const frags: Frag[] = []
-    for (let f = 0; f < 22; f++) {
-      const cx = 0.5 + Math.random() * 1.4
-      const cy = 0.2 + Math.random() * 1.2
-      const sz = 0.07 + Math.random() * 0.22
-      const a = Math.random() * Math.PI * 2
-      const fPts = [
-        new THREE.Vector3(cx + Math.cos(a) * sz,        cy + Math.sin(a) * sz,        0.05),
-        new THREE.Vector3(cx + Math.cos(a + 2.09) * sz, cy + Math.sin(a + 2.09) * sz, 0.05),
-        new THREE.Vector3(cx + Math.cos(a + 4.19) * sz, cy + Math.sin(a + 4.19) * sz, 0.05),
-        new THREE.Vector3(cx + Math.cos(a) * sz,        cy + Math.sin(a) * sz,        0.05),
-      ]
-      const fLine = new THREE.Line(
-        new THREE.BufferGeometry().setFromPoints(fPts),
-        new THREE.LineBasicMaterial({
-          color: f % 3 === 0 ? 0xC9A84C : 0x8B1A1A,
-          transparent: true,
-          opacity: 0.2 + Math.random() * 0.5,
-        })
-      )
-      group.add(fLine)
-      frags.push({ line: fLine, vx: 0.0004 + Math.random() * 0.0009, vy: (Math.random() - 0.3) * 0.0005, vr: (Math.random() - 0.5) * 0.009, ox: cx, oy: cy })
+    // ── Vertical connectors between rings (depth lines) ────────
+    const connectSteps = 24
+    for (let cs = 0; cs < connectSteps; cs++) {
+      const idx = Math.floor((cs / connectSteps) * 199)
+      const connectPts: THREE.Vector3[] = []
+      for (let r = 0; r < ringCount; r++) {
+        const xyScale = baseScale * (1.0 - (r / (ringCount - 1)) * 0.32)
+        const z = (r - ringCount / 2) * 0.22
+        const t = (idx / 200) * Math.PI * 2
+        const x = 16 * Math.pow(Math.sin(t), 3) * xyScale
+        const y = (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * xyScale
+        connectPts.push(new THREE.Vector3(x, y, z))
+      }
+      const cGeo = new THREE.BufferGeometry().setFromPoints(connectPts)
+      group.add(new THREE.Line(cGeo, new THREE.LineBasicMaterial({
+        color: 0x8B1A1A,
+        transparent: true,
+        opacity: 0.25,
+      })))
     }
 
+    // ── Floating circuit dots ──────────────────────────────────
+    const dotCount = 80
+    const dotPos: number[] = []
+    for (let d = 0; d < dotCount; d++) {
+      const idx = Math.floor(Math.random() * 199)
+      const r = Math.floor(Math.random() * ringCount)
+      const xyScale = baseScale * (1.0 - (r / (ringCount - 1)) * 0.32)
+      const z = (r - ringCount / 2) * 0.22
+      const t = (idx / 200) * Math.PI * 2
+      const x = 16 * Math.pow(Math.sin(t), 3) * xyScale
+      const y = (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * xyScale
+      dotPos.push(x, y, z)
+    }
+    const dotGeo = new THREE.BufferGeometry()
+    dotGeo.setAttribute('position', new THREE.Float32BufferAttribute(dotPos, 3))
+    group.add(new THREE.Points(dotGeo, new THREE.PointsMaterial({
+      color: 0xFF3333,
+      size: 0.032,
+      transparent: true,
+      opacity: 0.9,
+    })))
+
+    // ── Gold accent dots ───────────────────────────────────────
+    const goldPos: number[] = []
+    for (let g = 0; g < 25; g++) {
+      const idx = Math.floor(Math.random() * 199)
+      const xyScale = baseScale * 0.95
+      const t = (idx / 200) * Math.PI * 2
+      const x = 16 * Math.pow(Math.sin(t), 3) * xyScale
+      const y = (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * xyScale
+      goldPos.push(x, y, (0 - ringCount / 2) * 0.22)
+    }
+    const goldGeo = new THREE.BufferGeometry()
+    goldGeo.setAttribute('position', new THREE.Float32BufferAttribute(goldPos, 3))
+    group.add(new THREE.Points(goldGeo, new THREE.PointsMaterial({
+      color: 0xC9A84C,
+      size: 0.04,
+      transparent: true,
+      opacity: 0.85,
+    })))
+
+    // ── Center Y symbol ────────────────────────────────────────
+    const yStem = [
+      new THREE.Vector3(-0.08, 0.2, 0), new THREE.Vector3(0, 0.05, 0),
+      new THREE.Vector3(0.08, 0.2, 0),  new THREE.Vector3(0, 0.05, 0),
+      new THREE.Vector3(0, 0.05, 0),    new THREE.Vector3(0, -0.15, 0),
+    ]
+    const yGeo = new THREE.BufferGeometry().setFromPoints(yStem)
+    group.add(new THREE.LineSegments(yGeo, new THREE.LineBasicMaterial({
+      color: 0xFF4444, transparent: true, opacity: 0.7,
+    })))
+
     // ── Animation ──────────────────────────────────────────────
-    group.position.y = -0.15
+    group.position.y = -0.1
     let t = 0
     let frame: number
-
-    // Heartbeat: scale keyframes (quick double-pump)
-    const beatCycle = 140 // frames per beat
     let beatFrame = 0
+    const beatCycle = 130
 
     const animate = () => {
       frame = requestAnimationFrame(animate)
-      t += 0.005
+      t += 0.006
       beatFrame++
 
-      // Globe-style rotation (Y + slight wobble)
-      group.rotation.y += 0.007
-      group.rotation.x = Math.sin(t * 0.4) * 0.18 + 0.1
+      // Globe-style Y rotation + gentle X wobble
+      group.rotation.y += 0.009
+      group.rotation.x = Math.sin(t * 0.3) * 0.15 + 0.08
 
-      // Heartbeat pulse — double thump every beatCycle frames
+      // Heartbeat: double-pump
       const bf = beatFrame % beatCycle
       let scale = 1.0
-      if (bf < 8)       scale = 1.0 + (bf / 8) * 0.06          // beat 1 up
-      else if (bf < 14) scale = 1.06 - ((bf - 8) / 6) * 0.04   // beat 1 down
-      else if (bf < 20) scale = 1.02 + ((bf - 14) / 6) * 0.045 // beat 2 up
-      else if (bf < 28) scale = 1.065 - ((bf - 20) / 8) * 0.065 // beat 2 down
+      if (bf < 7)       scale = 1.0 + (bf / 7) * 0.055
+      else if (bf < 13) scale = 1.055 - ((bf - 7) / 6) * 0.035
+      else if (bf < 19) scale = 1.02 + ((bf - 13) / 6) * 0.05
+      else if (bf < 27) scale = 1.07 - ((bf - 19) / 8) * 0.07
       group.scale.setScalar(scale)
-
-      // Fragment drift
-      frags.forEach(f => {
-        f.line.position.x += f.vx
-        f.line.position.y += f.vy
-        f.line.rotation.z += f.vr
-        if (f.line.position.x > 1.6 || Math.abs(f.line.position.y) > 1.4) {
-          f.line.position.set(0, 0, 0)
-          f.line.rotation.z = 0
-        }
-      })
 
       renderer.render(scene, camera)
     }
