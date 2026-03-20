@@ -18,7 +18,7 @@ export function GuideSection() {
     <section id="guide" className="py-20 px-4 bg-black">
       <div className="max-w-4xl mx-auto">
         {/* Section Label */}
-        <p className="section-label mb-4">PDF Guide — Core Playbook</p>
+        <p className="section-label mb-4">Core Playbook — 42 Pages &nbsp;·&nbsp; Updated Mar 18, 2026</p>
 
         {/* Title */}
         <h2 className="section-title mb-4">The AI Intern Playbook</h2>
@@ -44,12 +44,12 @@ export function GuideSection() {
         {/* Price and CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-between bg-gray-900/30 border border-gray-800 rounded-xl p-8">
           <div>
-            <p className="text-gray-400 mb-2">The AI Intern Playbook</p>
+            <p className="font-body text-gold font-semibold mb-1">The AI Intern Playbook + Launch Kit</p>
             <p className="text-4xl font-bold text-maroon">$39</p>
           </div>
           <a
             href="https://buy.stripe.com/dRm7sLbLE19obrv0bi2Nq06"
-            className="button-maroon inline-block mt-6 sm:mt-0"
+            className="font-body text-sm font-semibold px-7 py-3.5 border border-gold/60 text-gold hover:bg-gold hover:text-black transition-all duration-200 tracking-wide rounded-lg inline-block mt-6 sm:mt-0"
           >
             Get the Playbook — $39
           </a>

@@ -13,8 +13,8 @@ export function Footer() {
           {/* Left: Logo and tagline */}
           <div>
             <div className="flex items-baseline gap-0 mb-4">
-              <span className="font-display text-lg font-bold text-off-white tracking-tight">Chance</span>
-              <span className="font-display text-lg font-bold text-maroon tracking-tight"> Love</span>
+              <span className="font-display text-base font-bold text-off-white tracking-tight">Chance</span>
+              <span className="font-display text-base font-bold text-maroon tracking-tight"> Love</span>
             </div>
             <p className="font-body text-sm text-soft-gray/50 italic leading-relaxed max-w-xs">
               The future of work isn't fewer people doing more. It's the right people, supported by the right hires.

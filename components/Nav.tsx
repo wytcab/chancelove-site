@@ -11,8 +11,8 @@ export function Nav() {
       <div className="max-w-6xl mx-auto px-8 py-5 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-baseline gap-0">
-          <span className="font-display text-lg font-bold text-off-white tracking-tight">Chance</span>
-          <span className="font-display text-lg font-bold text-maroon tracking-tight"> Love</span>
+          <span className="font-display text-base font-bold text-off-white tracking-tight">Chance</span>
+          <span className="font-display text-base font-bold text-maroon tracking-tight"> Love</span>
         </div>
 
         {/* Nav Links */}
