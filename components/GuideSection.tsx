@@ -18,7 +18,7 @@ export function GuideSection() {
     <section id="guide" className="py-20 px-4 bg-black">
       <div className="max-w-4xl mx-auto">
         {/* Section Label */}
-        <p className="section-label mb-4">Core Playbook — 42 Pages &nbsp;·&nbsp; Updated Mar 18, 2026</p>
+        <p className="section-label mb-4">Core Playbook — 77 Pages &nbsp;·&nbsp; Updated Mar 18, 2026</p>
 
         {/* Title */}
         <h2 className="section-title mb-4">The AI Intern Playbook</h2>
