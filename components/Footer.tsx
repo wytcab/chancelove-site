@@ -16,9 +16,44 @@ export function Footer() {
               <span className="font-display text-xs font-bold text-off-white tracking-tight">Chance</span>
               <span className="font-display text-sm font-bold text-maroon tracking-tight"> Love</span>
             </div>
-            <p className="font-body text-sm text-soft-gray/50 italic leading-relaxed max-w-xs">
+            <p className="font-body text-sm text-soft-gray/50 italic leading-relaxed max-w-xs mb-6">
               The future of work isn't fewer people doing more. It's the right people, supported by the right hires.
             </p>
+            {/* Newsletter */}
+            <a
+              href="https://chancelove.ai/newsletter"
+              className="font-body text-sm text-soft-gray/50 hover:text-soft-gray transition-colors tracking-wide block mb-2"
+            >
+              The Wild Chancery — newsletter
+            </a>
+            {/* Marketplace links */}
+            <p className="font-body text-xs text-soft-gray/30 tracking-wide mb-2">Also available on:</p>
+            <div className="flex gap-4">
+              <a
+                href="https://chanceloveai.gumroad.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-xs text-soft-gray/40 hover:text-soft-gray transition-colors"
+              >
+                Gumroad
+              </a>
+              <a
+                href="https://payhip.com/ChanceLove"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-xs text-soft-gray/40 hover:text-soft-gray transition-colors"
+              >
+                Payhip
+              </a>
+              <a
+                href="https://ko-fi.com/chancelove"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-xs text-soft-gray/40 hover:text-soft-gray transition-colors"
+              >
+                Ko-fi
+              </a>
+            </div>
           </div>
 
           {/* Right: Links */}

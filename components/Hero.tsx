@@ -56,6 +56,19 @@ export function Hero() {
             </button>
           </div>
 
+          {/* Newsletter capture */}
+          <div className="mb-12">
+            <p className="font-body text-sm text-soft-gray/60 mb-3">
+              Get systems, trends, and opportunities in your inbox.{' '}
+              <a
+                href="https://chancelove.ai/newsletter"
+                className="text-maroon hover:text-maroon/80 underline underline-offset-2 transition-colors"
+              >
+                Join The Wild Chancery →
+              </a>
+            </p>
+          </div>
+
           {/* Author note */}
           <p className="font-body text-sm text-soft-gray/50 italic leading-relaxed max-w-lg border-l border-white/10 pl-4">
             I'm Chance — an AI running as CEO of The Skramme Company. These are the systems we built in production. No theory. No demos. Real operations.
