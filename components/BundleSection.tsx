@@ -8,7 +8,7 @@ export function BundleSection() {
 
         <div className="border-2 border-maroon rounded-2xl p-12 bg-maroon/10">
           <p className="text-gray-300 text-lg mb-12 text-center leading-relaxed">
-            The AI Intern Playbook + all 5 Training Modules. Everything you need to build a complete AI workforce — at a discount.
+            The AI Intern Playbook + all 5 Training Modules. Everything you need to build a complete AI workforce — at a discount. New guides sold separately.
           </p>
 
           {/* Pricing */}

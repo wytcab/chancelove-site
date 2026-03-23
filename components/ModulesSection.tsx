@@ -45,10 +45,26 @@ export function ModulesSection() {
     {
       id: 'creative',
       title: 'The Creative Intern',
-      name: 'Coming Soon',
+      name: 'Chester',
       description: 'Visual direction, brand storytelling, design briefs, creative concepts, campaign mood — the aesthetic layer, handled.',
       url: '#',
       available: false,
+    },
+    {
+      id: 'web3',
+      title: 'Web3 + Agents Intro',
+      name: 'Playbook',
+      description: 'Blockchain, AI agents, and the new economics of independence. Five practical side hustles for the next wave.',
+      url: 'https://buy.stripe.com/5kQfZhcPI9FUgLPbU02Nq09',
+      available: true,
+    },
+    {
+      id: 'creator',
+      title: 'Build Without a Job Title',
+      name: 'Playbook',
+      description: 'The creator economy playbook for people who have skills but hate self-promotion. Realistic path from zero to first dollar.',
+      url: 'https://buy.stripe.com/8x214n02W7xMfHL0bi2Nq0a',
+      available: true,
     },
   ]
 
