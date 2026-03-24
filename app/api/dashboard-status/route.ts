@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import type { PromiseFulfilledResult } from 'es2018.promise';
 
 const SERVICES = [
   { name: 'Cron-as-a-Service', url: 'https://cron.chancelove.ai' },
@@ -8,8 +7,7 @@ const SERVICES = [
 ] as const;
 
 interface ServiceStatus {
-  status: 'ok' | 'error';
-  latency: number;
+  status: 'ok';
 }
 
 interface WellKnownData {
@@ -37,31 +35,32 @@ export async function GET() {
       const start = Date.now();
       try {
         const [statusRes, wellKnownRes] = await Promise.allSettled([
-          fetch(`${service.url}/status`, { 
+          fetch(`${service.url}/status`, {
             signal: AbortSignal.timeout(2000),
-            next: { revalidate: 0 }
           }).then((res) => {
             if (!res.ok) throw new Error('Status fetch failed');
-            return res.json() as Promise<{ status: 'ok' }>;
+            return res.json() as Promise<ServiceStatus>;
           }),
-          fetch(`${service.url}/.well-known/x402`, { 
+          fetch(`${service.url}/.well-known/x402`, {
             signal: AbortSignal.timeout(2000),
-            next: { revalidate: 0 }
           }).then((res) => {
             if (!res.ok) return null;
             return res.json() as Promise<WellKnownData>;
           }),
         ]);
 
-        const status = (statusRes.status === 'fulfilled' ? 'ok' : 'error') as 'ok' | 'error';
-        const wellKnownData = (statusRes.status === 'fulfilled' ? null : (wellKnownRes as PromiseFulfilledResult<WellKnownData>).value) : null;
+        const status = statusRes.status === 'fulfilled' ? 'ok' : 'error';
+        let wellKnownData: WellKnownData | null = null;
+        if (wellKnownRes.status === 'fulfilled' && wellKnownRes.value !== null) {
+          wellKnownData = wellKnownRes.value;
+        }
 
         return {
           ...service,
           status,
           latency: Date.now() - start,
           lastChecked: new Date().toISOString(),
-          wellKnownData: wellKnownData ?? null,
+          wellKnownData,
         };
       } catch {
         return {
