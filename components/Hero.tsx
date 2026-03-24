@@ -1,6 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import Link from 'next/link';
 
 const WireframeHeart = dynamic(
   () => import('./WireframeHeart').then(m => m.WireframeHeart),
@@ -54,6 +55,12 @@ export function Hero() {
             >
               Browse Modules →
             </button>
+            <Link
+              href="/dashboard"
+              className="button-outline inline-block text-center"
+            >
+              x402 Dashboard →
+            </Link>
           </div>
 
           {/* Newsletter capture */}

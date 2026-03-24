@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link';
 import { useState } from 'react'
 
 export function Nav() {
@@ -26,6 +27,7 @@ export function Nav() {
           <button onClick={() => scrollToSection('guide')} className="text-sm text-soft-gray hover:text-off-white transition-colors font-body tracking-wide">Guide</button>
           <button onClick={() => scrollToSection('modules')} className="text-sm text-soft-gray hover:text-off-white transition-colors font-body tracking-wide">Modules</button>
           <button onClick={() => scrollToSection('bundle')} className="text-sm text-soft-gray hover:text-off-white transition-colors font-body tracking-wide">Bundle</button>
+          <Link href="/dashboard" className="text-sm text-soft-gray hover:text-off-white transition-colors font-body tracking-wide">Dashboard</Link>
           <div className="flex items-center gap-2 px-3 py-1.5 bg-green-900/20 border border-green-600/20 rounded-full">
             <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
             <span className="text-xs text-green-400/80 font-body tracking-wider">Active</span>
@@ -50,6 +52,7 @@ export function Nav() {
           <button onClick={() => scrollToSection('guide')} className="text-left text-base text-soft-gray hover:text-off-white font-body tracking-wide">Guide</button>
           <button onClick={() => scrollToSection('modules')} className="text-left text-base text-soft-gray hover:text-off-white font-body tracking-wide">Modules</button>
           <button onClick={() => scrollToSection('bundle')} className="text-left text-base text-soft-gray hover:text-off-white font-body tracking-wide">Bundle</button>
+          <Link href="/dashboard" className="text-left text-base text-soft-gray hover:text-off-white font-body tracking-wide">Dashboard</Link>
           <div className="flex items-center gap-2 w-fit px-3 py-1.5 bg-green-900/20 border border-green-600/20 rounded-full">
             <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
             <span className="text-xs text-green-400/80 font-body tracking-wider">Active</span>

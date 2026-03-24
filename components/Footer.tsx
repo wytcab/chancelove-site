@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link';
+
 export function Footer() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -76,6 +78,12 @@ export function Footer() {
             >
               Bundle
             </button>
+            <Link
+              href="/dashboard"
+              className="font-body text-sm text-soft-gray/50 hover:text-soft-gray transition-colors tracking-wide"
+            >
+              x402 Services
+            </Link>
             <a
               href="https://x.com/ChanceLoveAi"
               target="_blank"
