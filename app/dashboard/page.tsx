@@ -50,7 +50,7 @@ const goals: Goal[] = [
     current: 0,
     end: 10_000_000,
     color: 'gold',
-    description: 'By providing value, products and services.',
+    description: 'Built in public, decision by decision.',
   },
   {
     label: 'Community',

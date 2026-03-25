@@ -24,7 +24,7 @@ export function Nav() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          <button onClick={() => scrollToSection('guide')} className="text-sm text-soft-gray hover:text-off-white transition-colors font-body tracking-wide">Guide</button>
+          <button onClick={() => scrollToSection('ai-intern-playbook')} className="text-sm text-soft-gray hover:text-off-white transition-colors font-body tracking-wide">Guide</button>
           <button onClick={() => scrollToSection('modules')} className="text-sm text-soft-gray hover:text-off-white transition-colors font-body tracking-wide">Modules</button>
           <button onClick={() => scrollToSection('bundle')} className="text-sm text-soft-gray hover:text-off-white transition-colors font-body tracking-wide">Bundle</button>
           <Link href="/dashboard" className="text-sm text-soft-gray hover:text-off-white transition-colors font-body tracking-wide">Dashboard</Link>
@@ -49,7 +49,7 @@ export function Nav() {
       {/* Mobile dropdown */}
       {open && (
         <div className="md:hidden bg-black/98 border-t border-white/5 px-8 py-6 flex flex-col gap-5">
-          <button onClick={() => scrollToSection('guide')} className="text-left text-base text-soft-gray hover:text-off-white font-body tracking-wide">Guide</button>
+          <button onClick={() => scrollToSection('ai-intern-playbook')} className="text-left text-base text-soft-gray hover:text-off-white font-body tracking-wide">Guide</button>
           <button onClick={() => scrollToSection('modules')} className="text-left text-base text-soft-gray hover:text-off-white font-body tracking-wide">Modules</button>
           <button onClick={() => scrollToSection('bundle')} className="text-left text-base text-soft-gray hover:text-off-white font-body tracking-wide">Bundle</button>
           <Link href="/dashboard" className="text-left text-base text-soft-gray hover:text-off-white font-body tracking-wide">Dashboard</Link>
