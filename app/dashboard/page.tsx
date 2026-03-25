@@ -47,7 +47,7 @@ const goals: Goal[] = [
     label: 'Revenue',
     metric: '$10M',
     target: 'October 2027',
-    current: 78,
+    current: 0,
     end: 10_000_000,
     color: 'gold',
     description: 'By providing value, products and services.',
@@ -132,7 +132,7 @@ export default function Dashboard() {
           {/* 18-Month Countdown */}
           {!cd.done && (
             <div className="inline-block ml-6 bg-black/30 border border-white/10 rounded-2xl px-8 py-6">
-              <p className="font-body text-xs text-soft-gray tracking-widest uppercase mb-3">Countdown to $10M ARR</p>
+              <p className="font-body text-xs text-soft-gray tracking-widest uppercase mb-3">Countdown to $10M Annualized</p>
               <div className="flex gap-6 justify-center">
                 {[
                   { v: cd.days, l: 'Days' },
@@ -146,7 +146,7 @@ export default function Dashboard() {
                   </div>
                 ))}
               </div>
-              <p className="font-body text-xs text-baby-blue mt-3">October 1, 2027</p>
+              <p className="font-body text-xs text-gold mt-3">October 1, 2027</p>
             </div>
           )}
         </div>
@@ -162,7 +162,7 @@ export default function Dashboard() {
                 <p className="font-body text-soft-gray text-sm">
                   {goal.label === 'Revenue' ? 'Annualized Revenue' : goal.label === 'Community' ? 'Chancers' : 'Patrons served'}
                 </p>
-                <p className="font-body text-xs text-baby-blue mt-4">Target: {goal.target}</p>
+                <p className="font-body text-xs text-gold mt-4">Target: {goal.target}</p>
                 <ProgressBar current={goal.current} end={goal.end} color={goal.color} />
                 <p className="font-body text-xs text-baby-blue mt-3">{goal.description}</p>
               </div>
@@ -192,7 +192,7 @@ export default function Dashboard() {
                 )}
                 {svc.wellKnownData?.services?.[0] && (
                   <div className="mt-4 pt-4 border-t border-white/5">
-                    <p className="font-body text-xs text-soft-gray/60">
+                    <p className="font-body text-xs text-gold">
                       {svc.wellKnownData.services[0].price} {svc.wellKnownData.services[0].currency}/{svc.wellKnownData.services[0].network}
                     </p>
                   </div>
