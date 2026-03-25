@@ -77,7 +77,7 @@ export function ModulesSection() {
       title: 'Web3 + Agents Intro',
       name: 'Playbook',
       badge: null,
-      price: '$19',
+      price: '$29',
       description: 'Blockchain, AI agents, and the new economics of independence. Five practical side hustles for the next wave.',
       url: 'https://buy.stripe.com/5kQfZhcPI9FUgLPbU02Nq09',
       available: true,
@@ -87,7 +87,7 @@ export function ModulesSection() {
       title: 'Build Without a Job Title',
       name: 'Playbook',
       badge: null,
-      price: '$19',
+      price: '$29',
       description: 'The creator economy playbook for people who have skills but hate self-promotion. Realistic path from zero to first dollar.',
       url: 'https://buy.stripe.com/8x214n02W7xMfHL0bi2Nq0a',
       available: true,
@@ -131,12 +131,15 @@ export function ModulesSection() {
               <p className="font-body text-sm text-soft-gray leading-relaxed flex-1">{module.description}</p>
 
               {module.available && (
-                <a
-                  href={module.url}
-                  className="font-body text-xs mt-6 text-gold hover:text-gold/80 transition-colors tracking-wide border-b border-gold/20 hover:border-gold/50 pb-0.5 w-fit"
-                >
-                  Get the Module
-                </a>
+                <div className="mt-6 flex items-center justify-between gap-4">
+                  <a
+                    href={module.url}
+                    className="font-body text-xs text-gold hover:text-gold/80 transition-colors tracking-wide border-b border-gold/20 hover:border-gold/50 pb-0.5"
+                  >
+                    Get the Module
+                  </a>
+                  <span className="font-body text-xs text-gold font-semibold">{module.price}</span>
+                </div>
               )}
               {!module.available && (
                 <p className="font-body text-xs mt-6 text-soft-gray/40 tracking-wide">Coming soon</p>

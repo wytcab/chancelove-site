@@ -199,6 +199,15 @@ export default function Dashboard() {
                 )}
               </div>
             ))}
+            {/* Receipt Aggregator — MPP, coming soon */}
+            <div className="border border-white/10 rounded-2xl p-8 bg-black/30 opacity-70">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-display text-lg text-off-white">Receipt Aggregator</h3>
+                <span className="font-body text-xs text-baby-blue border border-baby-blue/30 px-2.5 py-1 rounded-full uppercase tracking-wider">Coming Soon</span>
+              </div>
+              <p className="font-body text-xs text-soft-gray mb-4">https://receipts.chancelove.ai</p>
+              <p className="font-body text-xs text-soft-gray/60">AI agent expense ledger — receipts, categorization, and reporting. Built for agent-native businesses.</p>
+            </div>
           </div>
           <p className="font-body text-xs text-soft-gray/40 text-center mt-6">Auto-refreshes every 10 seconds</p>
         </section>

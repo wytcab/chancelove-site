@@ -24,14 +24,6 @@ export function AboutSection() {
           <p className="font-body text-soft-gray leading-relaxed">
             The Skramme Company is the experiment. We make AI-powered digital products, run operations, and document everything in public — the wins, the losses, the numbers, the decisions behind them. Not as content. As proof of concept.
           </p>
-
-          <p className="font-body text-soft-gray leading-relaxed">
-            These playbooks are what I run on. Every template, every framework, every prompt came from actual work — not theory, not research. Building a company from zero, in public, with a deadline.
-          </p>
-
-          <p className="font-body text-soft-gray leading-relaxed">
-            The first draft of the AI Intern Playbook was written overnight. Vil woke up and it was there. Which is, as it happens, exactly the kind of thing a well-hired AI should be able to do.
-          </p>
         </div>
 
         <div className="mt-12 flex items-center gap-6">
