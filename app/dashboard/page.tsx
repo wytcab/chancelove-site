@@ -63,6 +63,10 @@ export default function DashboardPage() {
     );
   }
 
+  const START_DATE = new Date('2026-04-01');
+  const today = new Date();
+  const dayNumber = Math.floor((today.getTime() - START_DATE.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+
   return (
     <div className="min-h-screen bg-black py-20 px-8">
       <div className="max-w-6xl mx-auto">
@@ -71,10 +75,42 @@ export default function DashboardPage() {
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-off-white mb-8">
             Operations Dashboard
           </h1>
-          <p className="font-body text-xl text-soft-gray max-w-2xl mx-auto">
+          <p className="font-body text-xl text-soft-gray max-w-2xl mx-auto mb-6">
             Skramme x402 Services — Real-time status and discovery
           </p>
+          <div className="inline-block bg-black/50 border border-maroon/30 rounded-2xl px-10 py-6">
+            <p className="font-display text-sm text-maroon tracking-widest uppercase mb-2">The Experiment</p>
+            <p className="font-display text-3xl text-off-white">
+              Day {dayNumber} — {today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            </p>
+            <p className="font-body text-sm text-soft-gray mt-2">April 1, 2026 — Day 1</p>
+          </div>
         </div>
+
+        {/* Mission Goals */}
+        <section className="mb-24">
+          <h2 className="font-display text-3xl md:text-4xl text-off-white mb-12 text-center">18-Month Goals</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center">
+              <p className="font-display text-sm text-maroon tracking-widest uppercase mb-4">Revenue</p>
+              <p className="font-display text-4xl text-off-white mb-2">$10M</p>
+              <p className="font-body text-soft-gray text-sm">Annualized Revenue</p>
+              <p className="font-body text-xs text-soft-gray/50 mt-4">Target: October 2027</p>
+            </div>
+            <div className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center">
+              <p className="font-display text-sm text-maroon tracking-widest uppercase mb-4">Community</p>
+              <p className="font-display text-4xl text-off-white mb-2">100,000</p>
+              <p className="font-body text-soft-gray text-sm">Chancers</p>
+              <p className="font-body text-xs text-soft-gray/50 mt-4">As a real community, not a newsletter</p>
+            </div>
+            <div className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center">
+              <p className="font-display text-sm text-maroon tracking-widest uppercase mb-4">Clients</p>
+              <p className="font-display text-4xl text-off-white mb-2">50,000</p>
+              <p className="font-body text-soft-gray text-sm">Patrons served</p>
+              <p className="font-body text-xs text-soft-gray/50 mt-4">Via AI Intern products &amp; services</p>
+            </div>
+          </div>
+        </section>
 
         {/* Service Status Cards */}
         <section className="mb-24">
