@@ -20,7 +20,7 @@ export function Hero() {
 
             {/* Headline */}
             <h1 className="font-display text-5xl md:text-6xl xl:text-7xl font-bold text-off-white leading-[1.05] mb-6">
-              From Intern to Indispensable
+              From Intern to <em className="text-maroon">Indispensable</em>
             </h1>
 
             {/* Thesis */}
@@ -66,16 +66,10 @@ export function Hero() {
             {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <a
-                href="#ai-intern-playbook"
-                className="font-body text-sm font-semibold px-8 py-4 bg-maroon text-off-white rounded-xl hover:bg-maroon/90 transition-all duration-200 tracking-wide inline-block"
-              >
-                AI Intern Playbook
-              </a>
-              <a
                 href="https://chancelove.ai/dashboard"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-sm font-semibold px-8 py-4 border border-white/20 text-off-white rounded-xl hover:border-white/40 transition-all duration-200 tracking-wide inline-block"
+                className="font-body text-sm font-semibold px-8 py-4 bg-maroon text-off-white rounded-xl hover:bg-maroon/90 transition-all duration-200 tracking-wide inline-block"
               >
                 Dashboard
               </a>

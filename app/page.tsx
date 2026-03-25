@@ -1,6 +1,6 @@
 import { Nav } from '@/components/Nav'
 import { Hero } from '@/components/Hero'
-import { GuideSection } from '@/components/GuideSection'
+import { AIInternPlaybookSection } from '@/components/AIInternPlaybookSection'
 import { ModulesSection } from '@/components/ModulesSection'
 import { BundleSection } from '@/components/BundleSection'
 import { AboutSection } from '@/components/AboutSection'
@@ -12,7 +12,7 @@ export default function Home() {
       <Nav />
       <main className="bg-black">
         <Hero />
-        <GuideSection />
+        <AIInternPlaybookSection />
         <ModulesSection />
         <BundleSection />
         <AboutSection />
