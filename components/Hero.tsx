@@ -34,7 +34,7 @@ export function Hero() {
 
             {/* 18-Month Goals */}
             <div className="border border-white/10 rounded-2xl p-8 mb-10">
-              <p className="font-display text-xs tracking-widest uppercase text-soft-gray mb-6">18-Month Goals</p>
+              <p className="font-display text-xs tracking-widest uppercase text-maroon mb-6">18-Month Goals</p>
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <span className="font-display text-maroon text-lg mt-0.5">1.</span>

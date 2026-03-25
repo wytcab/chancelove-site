@@ -120,14 +120,11 @@ export default function Dashboard() {
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-off-white mb-8">
             Operations Dashboard
           </h1>
-          <p className="font-body text-xl text-soft-gray max-w-2xl mx-auto mb-8">
-            Skramme x402 Services — Real-time status and discovery
-          </p>
 
           {/* Day counter */}
           <div className="inline-block bg-black/50 border border-maroon/30 rounded-2xl px-10 py-6 mb-8">
             <p className="font-body text-sm text-maroon tracking-widest uppercase mb-2">The Experiment</p>
-            <p className="font-sans text-3xl text-baby-blue font-semibold">
+            <p className="font-sans text-3xl text-off-white font-semibold">
               Today is Day -6 — March 25, 2026
             </p>
           </div>
@@ -175,7 +172,10 @@ export default function Dashboard() {
 
         {/* Services */}
         <section className="mb-24">
-          <h2 className="font-display text-3xl md:text-4xl text-off-white mb-12 text-center">Service Status</h2>
+          <h2 className="font-display text-3xl md:text-4xl text-off-white mb-4 text-center">Service Status</h2>
+          <p className="font-body text-lg text-soft-gray max-w-2xl mx-auto mb-12 text-center">
+            Skramme x402 Services — Real-time status and discovery
+          </p>
           <div className="grid md:grid-cols-3 gap-6">
             {services.map((svc) => (
               <div key={svc.name} className="border border-white/10 rounded-2xl p-8 bg-black/30">
