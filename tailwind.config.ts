@@ -13,6 +13,7 @@ const config: Config = {
         'gold-subtle': '#C9A84C33',
         'off-white': '#E8E6E1',
         'soft-gray': '#A8A5A0',
+        'baby-blue': '#93c5fd',
       },
       fontFamily: {
         display: ['var(--font-playfair)', 'Georgia', 'serif'],

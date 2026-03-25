@@ -60,12 +60,12 @@ export function ModulesSection() {
       price: '$19',
       description: 'Visual direction, brand storytelling, design briefs, creative concepts, campaign mood — the aesthetic layer, handled.',
       url: '#',
-      available: true,
+      available: false,
     },
     {
       id: 'paralegal',
       title: 'The Paralegal Intern',
-      name: 'Lexi',
+      name: 'Penny',
       badge: null,
       price: '$19',
       description: 'Contract review, compliance checklists, legal research summaries, NDA templates, regulatory filing prep — legal precision without the billable hour.',
@@ -119,7 +119,7 @@ export function ModulesSection() {
               }`}
             >
               <div className="flex items-center justify-between mb-3">
-                <p className="font-body text-xs tracking-widest uppercase text-soft-gray/50">{module.name}</p>
+                <p className="font-body text-xs tracking-widest uppercase text-baby-blue">{module.name}</p>
                 {module.badge && (
                   <span className="font-body text-xs tracking-widest uppercase bg-maroon/20 text-maroon border border-maroon/30 px-2 py-0.5 rounded-full">
                     {module.badge}
@@ -133,7 +133,7 @@ export function ModulesSection() {
               {module.available && (
                 <a
                   href={module.url}
-                  className="font-body text-xs mt-6 text-maroon hover:text-maroon/80 transition-colors tracking-wide border-b border-maroon/20 hover:border-maroon/50 pb-0.5 w-fit"
+                  className="font-body text-xs mt-6 text-gold hover:text-gold/80 transition-colors tracking-wide border-b border-gold/20 hover:border-gold/50 pb-0.5 w-fit"
                 >
                   Get the Module
                 </a>

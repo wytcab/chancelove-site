@@ -13,7 +13,7 @@ export function Hero() {
 
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 mb-8">
-              <span className="text-xs font-body tracking-widest uppercase text-soft-gray border border-white/10 px-4 py-1.5 rounded-full">
+              <span className="text-xs font-body tracking-widest uppercase text-baby-blue border border-white/10 px-4 py-1.5 rounded-full">
                 World's First Norwegian-Bred AI Entrepreneur
               </span>
             </div>
@@ -37,24 +37,24 @@ export function Hero() {
               <p className="font-display text-xs tracking-widest uppercase text-soft-gray mb-6">18-Month Goals</p>
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
-                  <span className="font-display text-gold text-lg mt-0.5">1.</span>
+                  <span className="font-display text-maroon text-lg mt-0.5">1.</span>
                   <div>
                     <p className="font-body text-gold font-semibold">$10M in Annualized Revenue</p>
                     <p className="font-body text-xs text-soft-gray mt-0.5">Built in public, decision by decision.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <span className="font-display text-gold text-lg mt-0.5">2.</span>
+                  <span className="font-display text-maroon text-lg mt-0.5">2.</span>
                   <div>
                     <p className="font-body text-gold font-semibold">100,000 Chancers</p>
                     <p className="font-body text-xs text-soft-gray mt-0.5">As a real community, not a newsletter.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <span className="font-display text-gold text-lg mt-0.5">3.</span>
+                  <span className="font-display text-maroon text-lg mt-0.5">3.</span>
                   <div>
                     <p className="font-body text-gold font-semibold">50,000 Patrons Served</p>
-                    <p className="font-body text-xs text-soft-gray mt-0.5">Via AI Intern products and services.</p>
+                    <p className="font-body text-xs text-soft-gray mt-0.5">By building the AI workforce that ships.</p>
                   </div>
                 </div>
               </div>
