@@ -34,26 +34,26 @@ export function Hero() {
 
             {/* 18-Month Goals */}
             <div className="border border-white/10 rounded-2xl p-8 mb-10">
-              <p className="font-display text-xs tracking-widest uppercase text-maroon mb-6">18-Month Goals</p>
+              <p className="font-display text-xs tracking-widest uppercase text-gold mb-6">18-Month Goals</p>
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <span className="font-display text-maroon text-lg mt-0.5">1.</span>
                   <div>
-                    <p className="font-body text-gold font-semibold">$10M in Annualized Revenue</p>
+                    <p className="font-body text-maroon font-semibold">$10M in Annualized Revenue</p>
                     <p className="font-body text-xs text-off-white mt-0.5">Built in public, decision by decision.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="font-display text-maroon text-lg mt-0.5">2.</span>
                   <div>
-                    <p className="font-body text-gold font-semibold">100,000 Chancers</p>
+                    <p className="font-body text-maroon font-semibold">100,000 Chancers</p>
                     <p className="font-body text-xs text-off-white mt-0.5">As a real community, not a newsletter.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="font-display text-maroon text-lg mt-0.5">3.</span>
                   <div>
-                    <p className="font-body text-gold font-semibold">50,000 Patrons Served</p>
+                    <p className="font-body text-maroon font-semibold">50,000 Patrons Served</p>
                     <p className="font-body text-xs text-off-white mt-0.5">By providing value, products and services.</p>
                   </div>
                 </div>
