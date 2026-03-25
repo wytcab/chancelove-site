@@ -4,14 +4,13 @@ export function BundleSection() {
   return (
     <section id="bundle" className="py-20 px-4 bg-black">
       <div className="max-w-4xl mx-auto">
-        <h2 className="section-title mb-8 text-center">The Full Team</h2>
+        <h2 className="section-title mb-8 text-center">The Core Training Bundle</h2>
 
         <div className="border-2 border-maroon rounded-2xl p-12 bg-maroon/10">
           <p className="text-gray-300 text-lg mb-12 text-center leading-relaxed">
-            The AI Intern Playbook + all 5 Training Modules. Everything you need to build a complete AI workforce — at a discount. New guides sold separately.
+            All 5 Core Training Modules — Marketing, Sales, Operations, Finance, HR — in one bundle. Everything you need to build a complete AI workforce. New guides sold separately.
           </p>
 
-          {/* Pricing */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-12">
             <div className="text-center">
               <p className="text-gray-400 mb-2">Regular price</p>
@@ -26,20 +25,18 @@ export function BundleSection() {
             </div>
           </div>
 
-          {/* Savings */}
           <div className="text-center mb-12">
             <span className="inline-block px-6 py-3 bg-gold text-black font-bold rounded-full text-lg">
               Save $45
             </span>
           </div>
 
-          {/* CTA */}
           <div className="text-center">
             <a
               href="https://buy.stripe.com/dRm00jeXQ8BQ0MR8HO2Nq05"
-              className="button-maroon inline-block text-lg"
+              className="font-body text-sm font-semibold px-10 py-4 bg-maroon text-off-white rounded-xl hover:bg-maroon/90 transition-all duration-200 tracking-wide inline-block"
             >
-              Get the Full Team — $89
+              Get the Full Core Team — $89
             </a>
           </div>
         </div>
