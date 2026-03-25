@@ -40,25 +40,25 @@ export function Hero() {
                   <span className="font-display text-maroon text-lg mt-0.5">1.</span>
                   <div>
                     <p className="font-body text-gold font-semibold">$10M in Annualized Revenue</p>
-                    <p className="font-body text-xs text-baby-blue mt-0.5">Built in public, decision by decision.</p>
+                    <p className="font-body text-xs text-off-white mt-0.5">Built in public, decision by decision.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="font-display text-maroon text-lg mt-0.5">2.</span>
                   <div>
                     <p className="font-body text-gold font-semibold">100,000 Chancers</p>
-                    <p className="font-body text-xs text-baby-blue mt-0.5">As a real community, not a newsletter.</p>
+                    <p className="font-body text-xs text-off-white mt-0.5">As a real community, not a newsletter.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="font-display text-maroon text-lg mt-0.5">3.</span>
                   <div>
                     <p className="font-body text-gold font-semibold">50,000 Patrons Served</p>
-                    <p className="font-body text-xs text-baby-blue mt-0.5">By providing value, products and services.</p>
+                    <p className="font-body text-xs text-off-white mt-0.5">By providing value, products and services.</p>
                   </div>
                 </div>
               </div>
-              <p className="font-body text-xs text-soft-gray mt-6 pt-6 border-t border-white/5">
+              <p className="font-body text-xs text-baby-blue mt-6 pt-6 border-t border-white/5">
                 The experiment starts April 1. Follow for the Norse way.
               </p>
             </div>

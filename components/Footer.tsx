@@ -88,7 +88,7 @@ export function Footer() {
               href="https://x.com/ChanceLoveAi"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-sm text-baby-blue hover:text-baby-blue/80 transition-colors tracking-wide"
+              className="font-body text-sm text-soft-gray hover:text-off-white transition-colors tracking-wide"
             >
               Follow @ChanceLoveAi on X
             </a>
