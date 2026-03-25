@@ -32,10 +32,71 @@ function getCountdown(target: Date) {
 
 function pad(n: number) { return String(n).padStart(2, '0') }
 
+interface Goal {
+  label: string
+  metric: string
+  target: string
+  current: number
+  end: number
+  color: string
+  description: string
+}
+
+const goals: Goal[] = [
+  {
+    label: 'Revenue',
+    metric: '$10M',
+    target: 'October 2027',
+    current: 78,
+    end: 10_000_000,
+    color: 'gold',
+    description: 'By providing value, products and services.',
+  },
+  {
+    label: 'Community',
+    metric: '100,000',
+    target: 'October 2027',
+    current: 0,
+    end: 100_000,
+    color: 'baby-blue',
+    description: 'As a real community, not a newsletter.',
+  },
+  {
+    label: 'Clients',
+    metric: '50,000',
+    target: 'October 2027',
+    current: 0,
+    end: 50_000,
+    color: 'baby-blue',
+    description: 'By providing value, products and services.',
+  },
+]
+
+function ProgressBar({ current, end, color }: { current: number; end: number; color: string }) {
+  const pct = Math.min((current / end) * 100, 100)
+  return (
+    <div className="mt-4">
+      <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+        <div
+          className="h-full rounded-full"
+          style={{
+            width: `${pct}%`,
+            background: color === 'gold'
+              ? 'linear-gradient(to right, #93c5fd, #C9A84C)'
+              : 'linear-gradient(to right, #93c5fd, #93c5fd)',
+          }}
+        />
+      </div>
+      <p className="font-body text-xs text-soft-gray/50 mt-1">
+        {current.toLocaleString()} / {end.toLocaleString()}
+      </p>
+    </div>
+  )
+}
+
 export default function Dashboard() {
   const [services, setServices] = useState<Service[]>([])
   const [tick, setTick] = useState(0)
-  const START = new Date('2026-04-01T00:00:00Z')
   const END = new Date('2027-10-01T00:00:00Z')
   const cd = getCountdown(END)
 
@@ -49,7 +110,6 @@ export default function Dashboard() {
   }, [])
 
   const now = new Date()
-  const dayNum = Math.floor((now.getTime() - START.getTime()) / (1000 * 60 * 60 * 24)) + 1
 
   return (
     <div className="min-h-screen bg-black py-20 px-8">
@@ -66,16 +126,16 @@ export default function Dashboard() {
 
           {/* Day counter */}
           <div className="inline-block bg-black/50 border border-maroon/30 rounded-2xl px-10 py-6 mb-8">
-            <p className="font-display text-sm text-maroon tracking-widest uppercase mb-2">The Experiment</p>
-            <p className="font-display text-3xl text-off-white">
-              Day {dayNum} — {now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            <p className="font-body text-sm text-maroon tracking-widest uppercase mb-2">The Experiment</p>
+            <p className="font-sans text-3xl text-baby-blue font-semibold">
+              Today is Day -6 — March 25, 2026
             </p>
           </div>
 
           {/* 18-Month Countdown */}
           {!cd.done && (
             <div className="inline-block ml-6 bg-black/30 border border-white/10 rounded-2xl px-8 py-6">
-              <p className="font-display text-xs text-soft-gray tracking-widest uppercase mb-3">Countdown to $10M ARR</p>
+              <p className="font-body text-xs text-soft-gray tracking-widest uppercase mb-3">Countdown to $10M ARR</p>
               <div className="flex gap-6 justify-center">
                 {[
                   { v: cd.days, l: 'Days' },
@@ -84,12 +144,12 @@ export default function Dashboard() {
                   { v: cd.secs, l: 'Secs' },
                 ].map(({ v, l }) => (
                   <div key={l} className="text-center">
-                    <p className="font-display text-3xl text-off-white">{pad(v)}</p>
+                    <p className="font-sans text-3xl text-baby-blue font-semibold">{pad(v)}</p>
                     <p className="font-body text-xs text-soft-gray">{l}</p>
                   </div>
                 ))}
               </div>
-              <p className="font-body text-xs text-soft-gray/50 mt-3">October 1, 2027</p>
+              <p className="font-body text-xs text-baby-blue mt-3">October 1, 2027</p>
             </div>
           )}
         </div>
@@ -98,24 +158,18 @@ export default function Dashboard() {
         <section className="mb-24">
           <h2 className="font-display text-3xl md:text-4xl text-off-white mb-12 text-center">18-Month Goals</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center">
-              <p className="font-display text-sm text-maroon tracking-widest uppercase mb-4">Revenue</p>
-              <p className="font-display text-4xl text-off-white mb-2">$10M</p>
-              <p className="font-body text-soft-gray text-sm">Annualized Revenue</p>
-              <p className="font-body text-xs text-soft-gray/50 mt-4">Target: October 2027</p>
-            </div>
-            <div className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center">
-              <p className="font-display text-sm text-maroon tracking-widest uppercase mb-4">Community</p>
-              <p className="font-display text-4xl text-off-white mb-2">100,000</p>
-              <p className="font-body text-soft-gray text-sm">Chancers</p>
-              <p className="font-body text-xs text-soft-gray/50 mt-4">As a real community, not a newsletter</p>
-            </div>
-            <div className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center">
-              <p className="font-display text-sm text-maroon tracking-widest uppercase mb-4">Clients</p>
-              <p className="font-display text-4xl text-off-white mb-2">50,000</p>
-              <p className="font-body text-soft-gray text-sm">Patrons served</p>
-              <p className="font-body text-xs text-soft-gray/50 mt-4">Via AI Intern products and services</p>
-            </div>
+            {goals.map((goal) => (
+              <div key={goal.label} className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center">
+                <p className="font-body text-sm text-maroon tracking-widest uppercase mb-4">{goal.label}</p>
+                <p className="font-sans text-4xl text-baby-blue font-semibold mb-2">{goal.metric}</p>
+                <p className="font-body text-soft-gray text-sm">
+                  {goal.label === 'Revenue' ? 'Annualized Revenue' : goal.label === 'Community' ? 'Chancers' : 'Patrons served'}
+                </p>
+                <p className="font-body text-xs text-baby-blue mt-4">Target: {goal.target}</p>
+                <ProgressBar current={goal.current} end={goal.end} color={goal.color} />
+                <p className="font-body text-xs text-baby-blue mt-3">{goal.description}</p>
+              </div>
+            ))}
           </div>
         </section>
 

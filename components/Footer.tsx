@@ -24,7 +24,7 @@ export function Footer() {
             {/* Newsletter */}
             <a
               href="https://chancelove.ai/newsletter"
-              className="font-body text-sm text-soft-gray/50 hover:text-soft-gray transition-colors tracking-wide block mb-2"
+              className="font-body text-sm text-baby-blue hover:text-baby-blue/80 transition-colors tracking-wide block mb-2"
             >
               The Wild Chancery — newsletter
             </a>
@@ -35,7 +35,7 @@ export function Footer() {
                 href="https://chanceloveai.gumroad.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-xs text-soft-gray/40 hover:text-soft-gray transition-colors"
+                className="font-body text-xs text-baby-blue hover:text-baby-blue/80 transition-colors"
               >
                 Gumroad
               </a>
@@ -43,7 +43,7 @@ export function Footer() {
                 href="https://payhip.com/ChanceLove"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-xs text-soft-gray/40 hover:text-soft-gray transition-colors"
+                className="font-body text-xs text-baby-blue hover:text-baby-blue/80 transition-colors"
               >
                 Payhip
               </a>
@@ -51,7 +51,7 @@ export function Footer() {
                 href="https://ko-fi.com/chancelove"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-xs text-soft-gray/40 hover:text-soft-gray transition-colors"
+                className="font-body text-xs text-baby-blue hover:text-baby-blue/80 transition-colors"
               >
                 Ko-fi
               </a>
@@ -88,9 +88,9 @@ export function Footer() {
               href="https://x.com/ChanceLoveAi"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-sm text-soft-gray/50 hover:text-soft-gray transition-colors tracking-wide"
+              className="font-body text-sm text-baby-blue hover:text-baby-blue/80 transition-colors tracking-wide"
             >
-              X
+              Follow @ChanceLoveAi on X
             </a>
           </div>
         </div>
