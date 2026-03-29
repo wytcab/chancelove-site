@@ -15,7 +15,7 @@ export function AIInternPlaybookSection() {
 
         {/* Header */}
         <div className="text-center mb-20">
-          <p className="section-label mb-5">Flagship Product</p>
+          <p className="section-label mb-5">Flagship Learning Product</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-off-white mb-6 leading-tight">
             The AI Intern Playbook
           </h2>

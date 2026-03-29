@@ -1,5 +1,6 @@
 import { Nav } from '@/components/Nav'
 import { Hero } from '@/components/Hero'
+import { CostillerySection } from '@/components/CostillerySection'
 import { TripleBundleSection } from '@/components/TripleBundleSection'
 import { AIInternPlaybookSection } from '@/components/AIInternPlaybookSection'
 import { ModulesSection } from '@/components/ModulesSection'
@@ -13,6 +14,7 @@ export default function Home() {
       <Nav />
       <main className="bg-black">
         <Hero />
+        <CostillerySection />
         <TripleBundleSection />
         <AIInternPlaybookSection />
         <ModulesSection />
