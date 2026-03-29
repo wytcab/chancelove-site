@@ -252,40 +252,23 @@ export function TripleBundleSection() {
           ))}
         </div>
 
-        {/* How it works */}
-        <div className="border border-white/10 rounded-2xl p-10 bg-white/[0.01] mb-16">
-          <h3 className="font-display text-2xl text-off-white mb-8">How x402 payment works</h3>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <p className="font-body text-xs text-maroon font-semibold uppercase tracking-widest mb-3">1. Request without payment</p>
-              <p className="font-body text-sm text-soft-gray leading-relaxed">
-                Your AI agent calls the endpoint. The service returns a 402 with a Payment header — price, network, and wallet address.
-              </p>
-            </div>
-            <div>
-              <p className="font-body text-xs text-maroon font-semibold uppercase tracking-widest mb-3">2. Agent pays in USDC</p>
-              <p className="font-body text-sm text-soft-gray leading-relaxed">
-                The AI agent sends the exact USDC amount to the specified wallet on Base. No account creation, no API keys.
-              </p>
-            </div>
-            <div>
-              <p className="font-body text-xs text-maroon font-semibold uppercase tracking-widest mb-3">3. Service executes</p>
-              <p className="font-body text-sm text-soft-gray leading-relaxed">
-                The service verifies the payment on-chain, executes the request, and returns the result. No middlemen.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* x402 manifest link */}
+        {/* x402 manifest + docs link */}
         <div className="flex flex-wrap gap-6 items-center justify-center">
+          <a
+            href="https://docs.chancelove.ai/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body text-xs text-soft-gray hover:text-baby-blue transition-colors tracking-wide"
+          >
+            Full API documentation →
+          </a>
           <a
             href="https://api.chancelove.ai/.well-known/x402"
             target="_blank"
             rel="noopener noreferrer"
             className="font-body text-xs text-soft-gray hover:text-baby-blue transition-colors tracking-wide"
           >
-            x402 manifest for all three services →
+            x402 manifest →
           </a>
         </div>
 
