@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
 interface Service {
   name: string
@@ -30,115 +30,59 @@ function getCountdown(target: Date) {
   return { days, hours, mins, secs, done: false }
 }
 
-function pad(n: number) { return String(n).padStart(3, '0') }
 function pad2(n: number) { return String(n).padStart(2, '0') }
 
 // ─── FLIP CLOCK ───────────────────────────────────────────────────────────────
-function FlipCard({ value, label }: { value: string; label: string }) {
-  const [flipping, setFlipping] = useState(false)
-  const prevRef = useRef(value)
-
-  useEffect(() => {
-    if (prevRef.current !== value) {
-      setFlipping(true)
-      const t = setTimeout(() => {
-        setFlipping(false)
-        prevRef.current = value
-      }, 300)
-      return () => clearTimeout(t)
-    }
-  }, [value])
-
+function FlipUnit({ value, label }: { value: number; label: string }) {
+  const s = String(value).padStart(2, '0')
   return (
     <div className="flex flex-col items-center">
-      {/* Label */}
       <p className="font-body text-[10px] text-white/40 tracking-[0.2em] uppercase mb-2">{label}</p>
-
-      {/* Card */}
       <div
-        className="relative w-16 h-20 rounded-lg overflow-hidden"
+        className="relative w-20 h-24 rounded-xl overflow-hidden"
         style={{
-          background: 'linear-gradient(180deg, #2a1f08 0%, #1a1204 100%)',
-          boxShadow: '0 6px 20px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,220,100,0.15), inset 0 -1px 0 rgba(0,0,0,0.6)',
-          border: '1px solid rgba(201,168,76,0.25)',
+          background: 'linear-gradient(180deg, #1e1e1e 0%, #141414 100%)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.5)',
+          border: '1px solid rgba(255,255,255,0.07)',
         }}
       >
-        {/* Top half (darker) */}
+        {/* Inner number card */}
         <div
-          className="absolute left-0 right-0 top-0 h-[calc(50%-1px)] rounded-t-lg overflow-hidden"
-          style={{ background: 'linear-gradient(180deg, #1f1708 0%, #1a1204 100%)' }}
-        >
-          <div
-            className="flex items-center justify-center h-full"
-            style={{
-              fontFamily: "'Courier New', Courier, monospace",
-              fontSize: '52px',
-              fontWeight: '700',
-              color: '#C9A84C',
-              lineHeight: 1,
-              textShadow: '0 0 20px rgba(201,168,76,0.5), 0 2px 4px rgba(0,0,0,0.8)',
-            }}
-          >
-            {value}
-          </div>
-        </div>
-
-        {/* Divider line */}
-        <div
-          className="absolute left-0 right-0 top-1/2 -translate-y-1/2 z-10"
+          className="absolute inset-x-2 inset-y-1 rounded-lg flex items-center justify-center"
           style={{
-            height: '2px',
-            background: 'rgba(0,0,0,0.7)',
-            boxShadow: '0 1px 0 rgba(201,168,76,0.1)',
+            background: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)',
+            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.05)',
           }}
-        />
-
-        {/* Bottom half (lighter) */}
-        <div
-          className="absolute left-0 right-0 bottom-0 h-[calc(50%-1px)] rounded-b-lg overflow-hidden"
-          style={{ background: 'linear-gradient(180deg, #2a1f08 0%, #1f1806 100%)' }}
         >
-          <div
-            className="flex items-center justify-center h-full"
+          <span
             style={{
               fontFamily: "'Courier New', Courier, monospace",
-              fontSize: '52px',
+              fontSize: '56px',
               fontWeight: '700',
-              color: '#C9A84C',
+              color: '#f5f5f5',
               lineHeight: 1,
-              textShadow: '0 0 20px rgba(201,168,76,0.5), 0 2px 4px rgba(0,0,0,0.8)',
+              letterSpacing: '-0.02em',
+              textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.05)',
             }}
           >
-            {value}
-          </div>
+            {s}
+          </span>
         </div>
-
-        {/* Glossy overlay */}
+        {/* Glossy top */}
         <div
-          className="absolute inset-x-0 top-0 h-4 rounded-t-lg opacity-30"
-          style={{ background: 'linear-gradient(180deg, rgba(255,220,120,0.15) 0%, transparent 100%)' }}
+          className="absolute inset-x-0 top-0 h-6 rounded-t-xl opacity-20 pointer-events-none"
+          style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 100%)' }}
         />
       </div>
     </div>
   )
 }
 
-function FlipUnit({ value, label }: { value: number; label: string }) {
-  const s = String(value).padStart(3, '0')
-  return (
-    <div className="flex gap-1.5 items-start">
-      {[...s].map((char, i) => (
-        <FlipCard key={i} value={char} label={i === 0 ? label : ''} />
-      ))}
-    </div>
-  )
-}
-
 function Separator() {
   return (
-    <div className="flex flex-col justify-center gap-3 px-2 pt-5">
-      <div className="w-2 h-2 rounded-full bg-white/20" />
-      <div className="w-2 h-2 rounded-full bg-white/20" />
+    <div className="flex flex-col justify-center gap-3 px-1" style={{ paddingTop: '22px' }}>
+      <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.25)' }} />
+      <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.25)' }} />
     </div>
   )
 }
@@ -228,7 +172,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-black py-20 px-8">
       <div className="max-w-6xl mx-auto">
 
-        {/* Hero */}
+        {/* hero */}
         <div className="text-center mb-16">
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-off-white mb-8">
             Operations Dashboard
@@ -237,18 +181,18 @@ export default function Dashboard() {
           {/* Flip Countdown — The Experiment */}
           {!cd.done && (
             <div
-              className="rounded-2xl px-10 py-8"
+              className="inline-block rounded-2xl px-12 py-8"
               style={{
-                background: 'radial-gradient(ellipse at center top, rgba(60,20,20,0.5) 0%, rgba(10,8,2,0.95) 100%)',
-                border: '1px solid rgba(139,26,26,0.4)',
-                boxShadow: '0 0 80px rgba(139,26,26,0.08), 0 20px 60px rgba(0,0,0,0.8)',
+                background: 'radial-gradient(ellipse at center top, rgba(30,20,20,0.7) 0%, rgba(10,8,8,0.98) 100%)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                boxShadow: '0 0 80px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05)',
               }}
             >
-              <p className="font-body text-sm text-maroon tracking-[0.25em] uppercase mb-1 text-center">The Experiment</p>
-              <p className="font-body text-[10px] text-white/25 tracking-[0.2em] uppercase mb-6 text-center">
+              <p className="font-body text-sm text-maroon tracking-[0.25em] uppercase mb-1">The Experiment</p>
+              <p className="font-body text-[10px] text-white/25 tracking-[0.2em] uppercase mb-6">
                 Countdown to $500K Donated — October 1, 2027
               </p>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center justify-center gap-2">
                 <FlipUnit value={cd.days} label="Days" />
                 <Separator />
                 <FlipUnit value={cd.hours} label="Hours" />
@@ -280,7 +224,7 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* Services */}
+        {/* Stream Status */}
         <section className="mb-24">
           <h2 className="font-display text-3xl md:text-4xl text-off-white mb-4 text-center">Stream Status</h2>
           <p className="font-body text-lg text-soft-gray max-w-2xl mx-auto mb-12 text-center">
