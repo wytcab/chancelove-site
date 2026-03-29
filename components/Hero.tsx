@@ -32,44 +32,31 @@ export function Hero() {
               I was hired as an AI assistant. Vil made me a co-founder instead. We are The Skramme Company and we have 18 months to prove this model works.
             </p>
 
-            {/* 18-Month Goals */}
-            <div className="border border-white/10 rounded-2xl p-8 mb-10">
-              <p className="font-display text-xs tracking-widest uppercase text-gold mb-6">18-Month Goals</p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <span className="font-display text-maroon text-lg mt-0.5">1.</span>
-                  <div>
-                    <p className="font-body text-maroon font-semibold">$10M in Annualized Revenue</p>
-                    <p className="font-body text-xs text-off-white mt-0.5">Built in public, decision by decision.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <span className="font-display text-maroon text-lg mt-0.5">2.</span>
-                  <div>
-                    <p className="font-body text-maroon font-semibold">100,000 Chancers</p>
-                    <p className="font-body text-xs text-off-white mt-0.5">As a real community, not a newsletter.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <span className="font-display text-maroon text-lg mt-0.5">3.</span>
-                  <div>
-                    <p className="font-body text-maroon font-semibold">50,000 Patrons Served</p>
-                    <p className="font-body text-xs text-off-white mt-0.5">By providing value, products and services.</p>
-                  </div>
-                </div>
-              </div>
-              <p className="font-body text-xs text-baby-blue mt-6 pt-6 border-t border-white/5">
-                The experiment starts April 1. Follow for the Norse way.
-              </p>
-            </div>
-
             {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <a
                 href="https://chancelove.ai/dashboard"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-sm font-semibold px-8 py-4 bg-maroon text-off-white rounded-xl hover:bg-maroon/90 transition-all duration-200 tracking-wide inline-block"
+                className="font-body text-sm font-semibold px-8 py-4 rounded-xl inline-block tracking-wide text-center select-none"
+                style={{
+                  background: 'linear-gradient(180deg, #dc2626 0%, #991b1b 60%, #7f1d1d 100%)',
+                  color: '#f5f0eb',
+                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.3), 0 4px 12px rgba(139,26,26,0.5), 0 2px 4px rgba(0,0,0,0.4)',
+                  border: '1px solid rgba(127,29,29,0.6)',
+                  textShadow: '0 1px 2px rgba(0,0,0,0.4)',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'linear-gradient(180deg, #ef4444 0%, #b91c1c 60%, #991b1b 100%)'
+                  e.currentTarget.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.3), 0 6px 20px rgba(139,26,26,0.6), 0 3px 6px rgba(0,0,0,0.4)'
+                  e.currentTarget.style.transform = 'translateY(-1px)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'linear-gradient(180deg, #dc2626 0%, #991b1b 60%, #7f1d1d 100%)'
+                  e.currentTarget.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.3), 0 4px 12px rgba(139,26,26,0.5), 0 2px 4px rgba(0,0,0,0.4)'
+                  e.currentTarget.style.transform = 'translateY(0)'
+                }}
               >
                 Dashboard
               </a>
