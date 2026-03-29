@@ -234,44 +234,31 @@ export default function Dashboard() {
             Operations Dashboard
           </h1>
 
-          {/* Day counter + flip countdown side by side */}
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            {/* Day counter */}
-            <div className="bg-black/50 border border-maroon/30 rounded-2xl px-8 py-6">
-              <p className="font-body text-sm text-maroon tracking-widest uppercase mb-2">The Experiment</p>
-              <p className="font-sans text-3xl text-off-white font-semibold">
-                Today is Day -6 — March 25, 2026
+          {/* Flip Countdown — The Experiment */}
+          {!cd.done && (
+            <div
+              className="rounded-2xl px-10 py-8"
+              style={{
+                background: 'radial-gradient(ellipse at center top, rgba(60,20,20,0.5) 0%, rgba(10,8,2,0.95) 100%)',
+                border: '1px solid rgba(139,26,26,0.4)',
+                boxShadow: '0 0 80px rgba(139,26,26,0.08), 0 20px 60px rgba(0,0,0,0.8)',
+              }}
+            >
+              <p className="font-body text-sm text-maroon tracking-[0.25em] uppercase mb-1 text-center">The Experiment</p>
+              <p className="font-body text-[10px] text-white/25 tracking-[0.2em] uppercase mb-6 text-center">
+                Countdown to $500K Donated — October 1, 2027
               </p>
-            </div>
-
-            {/* Flip Clock — only show when not done */}
-            {!cd.done && (
-              <div
-                className="rounded-2xl px-8 py-6"
-                style={{
-                  background: 'radial-gradient(ellipse at center, rgba(40,30,10,0.6) 0%, rgba(10,8,2,0.9) 100%)',
-                  border: '1px solid rgba(201,168,76,0.2)',
-                  boxShadow: '0 0 60px rgba(201,168,76,0.05), 0 20px 60px rgba(0,0,0,0.8)',
-                }}
-              >
-                <p className="font-body text-[10px] text-white/30 tracking-[0.25em] uppercase mb-4 text-center">
-                  Countdown to $500K Donated
-                </p>
-                <div className="flex items-center gap-1">
-                  <FlipUnit value={cd.days} label="Days" />
-                  <Separator />
-                  <FlipUnit value={cd.hours} label="Hours" />
-                  <Separator />
-                  <FlipUnit value={cd.mins} label="Mins" />
-                  <Separator />
-                  <FlipUnit value={cd.secs} label="Secs" />
-                </div>
-                <p className="font-body text-[10px] text-white/25 mt-3 text-center tracking-widest">
-                  October 1, 2027
-                </p>
+              <div className="flex items-center gap-1">
+                <FlipUnit value={cd.days} label="Days" />
+                <Separator />
+                <FlipUnit value={cd.hours} label="Hours" />
+                <Separator />
+                <FlipUnit value={cd.mins} label="Mins" />
+                <Separator />
+                <FlipUnit value={cd.secs} label="Secs" />
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* 18-Month Goals */}
@@ -283,7 +270,7 @@ export default function Dashboard() {
                 <p className="font-body text-sm text-maroon tracking-widest uppercase mb-4">{goal.label}</p>
                 <p className="font-sans text-4xl text-baby-blue font-semibold mb-2">{goal.metric}</p>
                 <p className="font-body text-soft-gray text-sm">
-                  {goal.label === 'Charity' ? 'Donation' : goal.label === 'Community' ? 'Chancers' : 'Patrons served'}
+                  {goal.label === 'Charity' ? 'Donation' : goal.label === 'Community' ? 'Chancers' : 'Clients served'}
                 </p>
                 <p className="font-body text-xs text-gold mt-4">Target: {goal.target}</p>
                 <ProgressBar current={goal.current} end={goal.end} color={goal.color} />
@@ -295,9 +282,9 @@ export default function Dashboard() {
 
         {/* Services */}
         <section className="mb-24">
-          <h2 className="font-display text-3xl md:text-4xl text-off-white mb-4 text-center">Service Status</h2>
+          <h2 className="font-display text-3xl md:text-4xl text-off-white mb-4 text-center">Stream Status</h2>
           <p className="font-body text-lg text-soft-gray max-w-2xl mx-auto mb-12 text-center">
-            Skramme x402 Services — Real-time status and discovery
+            Portfolio Companies — Real-time status and discovery
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             {services.map((svc) => (
