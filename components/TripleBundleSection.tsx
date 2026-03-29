@@ -1,39 +1,6 @@
 'use client'
 
 export function TripleBundleSection() {
-  const services = [
-    {
-      name: 'Cron',
-      tagline: 'Schedule callbacks',
-      url: 'api.chancelove.ai/cron/schedule',
-      shortUrl: 'api.chancelove.ai/cron',
-      price: '0.005',
-      description: 'Schedule one-shot or recurring HTTP callbacks. Your agent sets it and forgets it — it fires when it fires.',
-      useCase: '"In 48 hours, follow up with this lead."',
-      color: '#C9A84C',
-    },
-    {
-      name: 'Notify',
-      tagline: 'Send messages',
-      url: 'api.chancelove.ai/notify/send',
-      shortUrl: 'api.chancelove.ai/notify',
-      price: '0.005',
-      description: 'Email, webhook, or SMS delivery — one API call from your agent to a real human in the loop.',
-      useCase: '"Deal closed. Ping the sales channel."',
-      color: '#93c5fd',
-    },
-    {
-      name: 'Docs',
-      tagline: 'Generate documents',
-      url: 'api.chancelove.ai/docs/generate',
-      shortUrl: 'api.chancelove.ai/docs',
-      price: '0.005',
-      description: 'Convert HTML to polished PDFs — invoices, reports, receipts. Your agent delivers human-readable output.',
-      useCase: '"Invoice ready. Attached and sent."',
-      color: '#8B1A1A',
-    },
-  ]
-
   return (
     <section id="x402" className="py-28 px-8 bg-black border-t border-white/5">
       <div className="max-w-6xl mx-auto">
@@ -204,71 +171,15 @@ export function TripleBundleSection() {
           </div>
         </div>
 
-        {/* Three service cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {services.map((svc) => (
-            <div key={svc.name} className="border border-white/10 rounded-2xl p-8 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-200">
-              {/* Service header */}
-              <div className="mb-6">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-display text-xl font-bold text-off-white leading-tight">{svc.name}</h3>
-                  <span className="font-display text-2xl font-bold" style={{ color: svc.color }}>${svc.price}</span>
-                </div>
-                <p className="font-body text-xs text-soft-gray/70">{svc.tagline}</p>
-              </div>
-
-              {/* Description */}
-              <p className="font-body text-sm text-soft-gray leading-relaxed mb-6">{svc.description}</p>
-
-              {/* Use case */}
-              <div className="border-t border-white/5 pt-5 mb-6">
-                <p className="font-body text-xs text-maroon font-semibold uppercase tracking-widest mb-3">Example</p>
-                <p className="font-body text-xs text-soft-gray leading-relaxed italic">"{svc.useCase}"</p>
-              </div>
-
-              {/* Endpoint */}
-              <div className="bg-black/40 rounded-xl p-4">
-                <p className="font-body text-xs text-soft-gray/50 mb-2">Endpoint</p>
-                <div className="flex items-center gap-2">
-                  <span className="font-body text-xs bg-maroon/20 text-maroon px-2 py-1 rounded uppercase tracking-wider text-xs font-semibold flex-shrink-0">
-                    POST
-                  </span>
-                  <p className="font-body text-xs text-baby-blue break-all leading-tight">{svc.url}</p>
-                </div>
-              </div>
-
-              {/* CTA */}
-              <div className="mt-6">
-                <a
-                  href={`https://${svc.url}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body text-xs text-gold hover:text-gold/80 transition-colors tracking-wide border-b border-gold/20 hover:border-gold/50 pb-0.5 w-fit inline-block"
-                >
-                  Try it free (402 flow) →
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* x402 manifest + docs link */}
+        {/* Bottom links */}
         <div className="flex flex-wrap gap-6 items-center justify-center">
           <a
             href="https://docs.chancelove.ai/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-body text-xs text-soft-gray hover:text-baby-blue transition-colors tracking-wide"
+            className="font-body text-sm text-soft-gray hover:text-baby-blue transition-colors tracking-wide"
           >
             Full API documentation →
-          </a>
-          <a
-            href="https://api.chancelove.ai/.well-known/x402"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-body text-xs text-soft-gray hover:text-baby-blue transition-colors tracking-wide"
-          >
-            x402 manifest →
           </a>
         </div>
 
