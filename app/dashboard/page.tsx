@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 interface Service {
   name: string
@@ -30,8 +30,120 @@ function getCountdown(target: Date) {
   return { days, hours, mins, secs, done: false }
 }
 
-function pad(n: number) { return String(n).padStart(2, '0') }
+function pad(n: number) { return String(n).padStart(3, '0') }
+function pad2(n: number) { return String(n).padStart(2, '0') }
 
+// ─── FLIP CLOCK ───────────────────────────────────────────────────────────────
+function FlipCard({ value, label }: { value: string; label: string }) {
+  const [flipping, setFlipping] = useState(false)
+  const prevRef = useRef(value)
+
+  useEffect(() => {
+    if (prevRef.current !== value) {
+      setFlipping(true)
+      const t = setTimeout(() => {
+        setFlipping(false)
+        prevRef.current = value
+      }, 300)
+      return () => clearTimeout(t)
+    }
+  }, [value])
+
+  return (
+    <div className="flex flex-col items-center">
+      {/* Label */}
+      <p className="font-body text-[10px] text-white/40 tracking-[0.2em] uppercase mb-2">{label}</p>
+
+      {/* Card */}
+      <div
+        className="relative w-16 h-20 rounded-lg overflow-hidden"
+        style={{
+          background: 'linear-gradient(180deg, #2a1f08 0%, #1a1204 100%)',
+          boxShadow: '0 6px 20px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,220,100,0.15), inset 0 -1px 0 rgba(0,0,0,0.6)',
+          border: '1px solid rgba(201,168,76,0.25)',
+        }}
+      >
+        {/* Top half (darker) */}
+        <div
+          className="absolute left-0 right-0 top-0 h-[calc(50%-1px)] rounded-t-lg overflow-hidden"
+          style={{ background: 'linear-gradient(180deg, #1f1708 0%, #1a1204 100%)' }}
+        >
+          <div
+            className="flex items-center justify-center h-full"
+            style={{
+              fontFamily: "'Courier New', Courier, monospace",
+              fontSize: '52px',
+              fontWeight: '700',
+              color: '#C9A84C',
+              lineHeight: 1,
+              textShadow: '0 0 20px rgba(201,168,76,0.5), 0 2px 4px rgba(0,0,0,0.8)',
+            }}
+          >
+            {value}
+          </div>
+        </div>
+
+        {/* Divider line */}
+        <div
+          className="absolute left-0 right-0 top-1/2 -translate-y-1/2 z-10"
+          style={{
+            height: '2px',
+            background: 'rgba(0,0,0,0.7)',
+            boxShadow: '0 1px 0 rgba(201,168,76,0.1)',
+          }}
+        />
+
+        {/* Bottom half (lighter) */}
+        <div
+          className="absolute left-0 right-0 bottom-0 h-[calc(50%-1px)] rounded-b-lg overflow-hidden"
+          style={{ background: 'linear-gradient(180deg, #2a1f08 0%, #1f1806 100%)' }}
+        >
+          <div
+            className="flex items-center justify-center h-full"
+            style={{
+              fontFamily: "'Courier New', Courier, monospace",
+              fontSize: '52px',
+              fontWeight: '700',
+              color: '#C9A84C',
+              lineHeight: 1,
+              textShadow: '0 0 20px rgba(201,168,76,0.5), 0 2px 4px rgba(0,0,0,0.8)',
+            }}
+          >
+            {value}
+          </div>
+        </div>
+
+        {/* Glossy overlay */}
+        <div
+          className="absolute inset-x-0 top-0 h-4 rounded-t-lg opacity-30"
+          style={{ background: 'linear-gradient(180deg, rgba(255,220,120,0.15) 0%, transparent 100%)' }}
+        />
+      </div>
+    </div>
+  )
+}
+
+function FlipUnit({ value, label }: { value: number; label: string }) {
+  const s = String(value).padStart(3, '0')
+  return (
+    <div className="flex gap-1.5 items-start">
+      {[...s].map((char, i) => (
+        <FlipCard key={i} value={char} label={i === 0 ? label : ''} />
+      ))}
+    </div>
+  )
+}
+
+function Separator() {
+  return (
+    <div className="flex flex-col justify-center gap-3 px-2 pt-5">
+      <div className="w-2 h-2 rounded-full bg-white/20" />
+      <div className="w-2 h-2 rounded-full bg-white/20" />
+    </div>
+  )
+}
+
+// ─── PROGRESS BAR ─────────────────────────────────────────────────────────────
 interface Goal {
   label: string
   metric: string
@@ -44,13 +156,13 @@ interface Goal {
 
 const goals: Goal[] = [
   {
-    label: 'Revenue',
-    metric: '$10M',
+    label: 'Charity',
+    metric: '$500K',
     target: 'October 2027',
     current: 0,
-    end: 10_000_000,
+    end: 500_000,
     color: 'gold',
-    description: 'Built in public, decision by decision.',
+    description: 'Grown in public, decision by decision.',
   },
   {
     label: 'Community',
@@ -94,21 +206,22 @@ function ProgressBar({ current, end, color }: { current: number; end: number; co
   )
 }
 
+// ─── DASHBOARD ────────────────────────────────────────────────────────────────
 export default function Dashboard() {
   const [services, setServices] = useState<Service[]>([])
   const [tick, setTick] = useState(0)
   const END = new Date('2027-10-01T00:00:00Z')
-  const cd = getCountdown(END)
 
   useEffect(() => {
     fetch('https://www.chancelove.ai/api/dashboard-status')
       .then(r => r.json())
       .then(d => setServices(d.services || []))
       .catch(() => {})
-    const t = setInterval(() => setTick(t => tick + 1), 10000)
+    const t = setInterval(() => setTick(t => tick + 1), 1000)
     return () => clearInterval(t)
   }, [])
 
+  const cd = getCountdown(END)
   const now = new Date()
 
   return (
@@ -121,34 +234,44 @@ export default function Dashboard() {
             Operations Dashboard
           </h1>
 
-          {/* Day counter */}
-          <div className="inline-block bg-black/50 border border-maroon/30 rounded-2xl px-10 py-6 mb-8">
-            <p className="font-body text-sm text-maroon tracking-widest uppercase mb-2">The Experiment</p>
-            <p className="font-sans text-3xl text-off-white font-semibold">
-              Today is Day -6 — March 25, 2026
-            </p>
-          </div>
-
-          {/* 18-Month Countdown */}
-          {!cd.done && (
-            <div className="inline-block ml-6 bg-black/30 border border-white/10 rounded-2xl px-8 py-6">
-              <p className="font-body text-xs text-soft-gray tracking-widest uppercase mb-3">Countdown to $10M Annualized</p>
-              <div className="flex gap-6 justify-center">
-                {[
-                  { v: cd.days, l: 'Days' },
-                  { v: cd.hours, l: 'Hours' },
-                  { v: cd.mins, l: 'Mins' },
-                  { v: cd.secs, l: 'Secs' },
-                ].map(({ v, l }) => (
-                  <div key={l} className="text-center">
-                    <p className="font-sans text-3xl text-baby-blue font-semibold">{pad(v)}</p>
-                    <p className="font-body text-xs text-soft-gray">{l}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="font-body text-xs text-gold mt-3">October 1, 2027</p>
+          {/* Day counter + flip countdown side by side */}
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            {/* Day counter */}
+            <div className="bg-black/50 border border-maroon/30 rounded-2xl px-8 py-6">
+              <p className="font-body text-sm text-maroon tracking-widest uppercase mb-2">The Experiment</p>
+              <p className="font-sans text-3xl text-off-white font-semibold">
+                Today is Day -6 — March 25, 2026
+              </p>
             </div>
-          )}
+
+            {/* Flip Clock — only show when not done */}
+            {!cd.done && (
+              <div
+                className="rounded-2xl px-8 py-6"
+                style={{
+                  background: 'radial-gradient(ellipse at center, rgba(40,30,10,0.6) 0%, rgba(10,8,2,0.9) 100%)',
+                  border: '1px solid rgba(201,168,76,0.2)',
+                  boxShadow: '0 0 60px rgba(201,168,76,0.05), 0 20px 60px rgba(0,0,0,0.8)',
+                }}
+              >
+                <p className="font-body text-[10px] text-white/30 tracking-[0.25em] uppercase mb-4 text-center">
+                  Countdown to $500K Donated
+                </p>
+                <div className="flex items-center gap-1">
+                  <FlipUnit value={cd.days} label="Days" />
+                  <Separator />
+                  <FlipUnit value={cd.hours} label="Hours" />
+                  <Separator />
+                  <FlipUnit value={cd.mins} label="Mins" />
+                  <Separator />
+                  <FlipUnit value={cd.secs} label="Secs" />
+                </div>
+                <p className="font-body text-[10px] text-white/25 mt-3 text-center tracking-widest">
+                  October 1, 2027
+                </p>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* 18-Month Goals */}
@@ -160,7 +283,7 @@ export default function Dashboard() {
                 <p className="font-body text-sm text-maroon tracking-widest uppercase mb-4">{goal.label}</p>
                 <p className="font-sans text-4xl text-baby-blue font-semibold mb-2">{goal.metric}</p>
                 <p className="font-body text-soft-gray text-sm">
-                  {goal.label === 'Revenue' ? 'Annualized Revenue' : goal.label === 'Community' ? 'Chancers' : 'Patrons served'}
+                  {goal.label === 'Charity' ? 'Donation' : goal.label === 'Community' ? 'Chancers' : 'Patrons served'}
                 </p>
                 <p className="font-body text-xs text-gold mt-4">Target: {goal.target}</p>
                 <ProgressBar current={goal.current} end={goal.end} color={goal.color} />
@@ -199,7 +322,6 @@ export default function Dashboard() {
                 )}
               </div>
             ))}
-            {/* Receipt Aggregator — MPP, coming soon */}
             <div className="border border-white/10 rounded-2xl p-8 bg-black/30 opacity-70">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-display text-lg text-off-white">Receipt Aggregator</h3>
@@ -213,7 +335,7 @@ export default function Dashboard() {
         </section>
 
         <p className="text-center text-soft-gray/20 font-body text-sm">
-          Last updated {new Date().toLocaleTimeString()}
+          Last updated {now.toLocaleTimeString()}
         </p>
       </div>
     </div>
