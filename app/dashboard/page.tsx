@@ -33,20 +33,21 @@ function getCountdown(target: Date) {
 function pad2(n: number) { return String(n).padStart(2, '0') }
 
 // ─── FLIP CLOCK ───────────────────────────────────────────────────────────────
-function FlipUnit({ value, label }: { value: number; label: string }) {
+function FlipUnit({ value, label, wide }: { value: number; label: string; wide?: boolean }) {
   const s = String(value).padStart(2, '0')
   return (
     <div className="flex flex-col items-center">
       <p className="font-body text-[10px] text-white/40 tracking-[0.2em] uppercase mb-2">{label}</p>
       <div
-        className="relative w-20 h-24 rounded-xl overflow-hidden"
+        className="relative rounded-xl overflow-hidden"
         style={{
+          width: wide ? '96px' : '72px',
+          height: '88px',
           background: 'linear-gradient(180deg, #1e1e1e 0%, #141414 100%)',
           boxShadow: '0 8px 32px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.5)',
           border: '1px solid rgba(255,255,255,0.07)',
         }}
       >
-        {/* Inner number card */}
         <div
           className="absolute inset-x-2 inset-y-1 rounded-lg flex items-center justify-center"
           style={{
@@ -57,7 +58,7 @@ function FlipUnit({ value, label }: { value: number; label: string }) {
           <span
             style={{
               fontFamily: "'Courier New', Courier, monospace",
-              fontSize: '56px',
+              fontSize: wide ? '48px' : '44px',
               fontWeight: '700',
               color: '#f5f5f5',
               lineHeight: 1,
@@ -68,9 +69,8 @@ function FlipUnit({ value, label }: { value: number; label: string }) {
             {s}
           </span>
         </div>
-        {/* Glossy top */}
         <div
-          className="absolute inset-x-0 top-0 h-6 rounded-t-xl opacity-20 pointer-events-none"
+          className="absolute inset-x-0 top-0 h-5 rounded-t-xl opacity-20 pointer-events-none"
           style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 100%)' }}
         />
       </div>
@@ -150,7 +150,59 @@ function ProgressBar({ current, end, color }: { current: number; end: number; co
   )
 }
 
-// ─── DASHBOARD ────────────────────────────────────────────────────────────────
+// ─── COMPANY CARDS ───────────────────────────────────────────────────────────
+const companies = [
+  {
+    name: 'x402 Triple Bundle',
+    url: 'https://api.chancelove.ai/',
+    description: 'Three x402-native APIs — Cron, Notify, and Docs. Pay per call in USDC on Base.',
+    status: 'ok' as const,
+  },
+  {
+    name: 'Costillery',
+    url: 'https://costillery.com',
+    description: 'Receipt intelligence SDK for AI agents. Auto-capture MPP and x402 payment receipts.',
+    status: 'ok' as const,
+  },
+  {
+    name: 'Learning Guides',
+    url: 'https://chancelove.ai',
+    description: 'The AI Intern Playbook and digital training modules. Five interns, one co-founder.',
+    status: 'ok' as const,
+  },
+  {
+    name: 'Fraktklar',
+    url: 'https://fraktklar.com',
+    description: 'AI-powered freight forwarding platform for Norwegian businesses.',
+    status: 'error' as const,
+  },
+  {
+    name: 'StayCaptain',
+    url: 'https://staycaptain.com',
+    description: 'Property management and guest communication for short-term rentals.',
+    status: 'ok' as const,
+  },
+  {
+    name: 'X.com',
+    url: 'https://x.com/ChanceLoveAi',
+    description: '@ChanceLoveAi on X — the public voice of ChanceLove.ai and The Skramme Company.',
+    status: 'ok' as const,
+  },
+  {
+    name: 'The Wild Chancery',
+    url: 'https://x.com/TheWildChancery',
+    description: 'Community newsletter — the Norse way. Building in public, no fluff.',
+    status: 'error' as const,
+  },
+  {
+    name: 'Spotify',
+    url: '#',
+    description: 'Coming soon.',
+    status: 'error' as const,
+  },
+]
+
+// ─── DASHBOARD ───────────────────────────────────────────────────────────────
 export default function Dashboard() {
   const [services, setServices] = useState<Service[]>([])
   const [tick, setTick] = useState(0)
@@ -190,10 +242,10 @@ export default function Dashboard() {
             >
               <p className="font-body text-sm text-maroon tracking-[0.25em] uppercase mb-1">The Experiment</p>
               <p className="font-body text-[10px] text-white/25 tracking-[0.2em] uppercase mb-6">
-                Countdown to $500K Donated — October 1, 2027
+                Countdown to October 1, 2027
               </p>
               <div className="flex items-center justify-center gap-2">
-                <FlipUnit value={cd.days} label="Days" />
+                <FlipUnit value={cd.days} label="Days" wide={true} />
                 <Separator />
                 <FlipUnit value={cd.hours} label="Hours" />
                 <Separator />
@@ -224,50 +276,47 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* Stream Status */}
+        {/* Stream Status — Portfolio Companies */}
         <section className="mb-24">
           <h2 className="font-display text-3xl md:text-4xl text-off-white mb-4 text-center">Stream Status</h2>
           <p className="font-body text-lg text-soft-gray max-w-2xl mx-auto mb-12 text-center">
             Portfolio Companies — Real-time status and discovery
           </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {services.map((svc) => (
-              <div key={svc.name} className="border border-white/10 rounded-2xl p-8 bg-black/30">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-display text-lg text-off-white">{svc.name}</h3>
-                  <span className={`inline-block w-3 h-3 rounded-full ${svc.status === 'ok' ? 'bg-green-400' : 'bg-red-400'}`} />
+
+          <div className="grid md:grid-cols-2 gap-5">
+            {companies.map((company) => (
+              <a
+                key={company.name}
+                href={company.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block border border-white/10 rounded-2xl p-7 bg-black/30 hover:bg-white/[0.03] hover:border-white/20 transition-all duration-200 group"
+              >
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <h3 className="font-display text-lg text-off-white group-hover:text-white transition-colors leading-tight">
+                    {company.name}
+                  </h3>
+                  <span
+                    className="flex-shrink-0 mt-1 w-2.5 h-2.5 rounded-full"
+                    style={{
+                      background: company.status === 'ok' ? '#4ade80' : '#f87171',
+                      boxShadow: `0 0 6px ${company.status === 'ok' ? 'rgba(74,222,128,0.6)' : 'rgba(248,113,113,0.6)'}`,
+                    }}
+                  />
                 </div>
-                <p className="font-body text-xs text-soft-gray mb-4">{svc.url}</p>
-                {svc.status === 'ok' && (
-                  <p className="font-body text-xs text-soft-gray/60">Latency: {svc.latency}ms</p>
-                )}
-                {svc.status === 'error' && (
-                  <p className="font-body text-xs text-red-400">Service unreachable</p>
-                )}
-                {svc.wellKnownData?.services?.[0] && (
-                  <div className="mt-4 pt-4 border-t border-white/5">
-                    <p className="font-body text-xs text-gold">
-                      {svc.wellKnownData.services[0].price} {svc.wellKnownData.services[0].currency}/{svc.wellKnownData.services[0].network}
-                    </p>
-                  </div>
-                )}
-              </div>
+                <p className="font-body text-sm text-soft-gray leading-relaxed mb-4">{company.description}</p>
+                <p className="font-body text-xs text-baby-blue/60 group-hover:text-baby-blue transition-colors truncate">
+                  {company.url}
+                </p>
+              </a>
             ))}
-            <div className="border border-white/10 rounded-2xl p-8 bg-black/30 opacity-70">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-lg text-off-white">Receipt Aggregator</h3>
-                <span className="font-body text-xs text-baby-blue border border-baby-blue/30 px-2.5 py-1 rounded-full uppercase tracking-wider">Coming Soon</span>
-              </div>
-              <p className="font-body text-xs text-soft-gray mb-4">https://receipts.chancelove.ai</p>
-              <p className="font-body text-xs text-soft-gray/60">AI agent expense ledger — receipts, categorization, and reporting. Built for agent-native businesses.</p>
-            </div>
           </div>
-          <p className="font-body text-xs text-soft-gray/40 text-center mt-6">Auto-refreshes every 10 seconds</p>
+
+          <p className="font-body text-xs text-soft-gray/30 text-center mt-8">
+            Last updated {now.toLocaleTimeString()}
+          </p>
         </section>
 
-        <p className="text-center text-soft-gray/20 font-body text-sm">
-          Last updated {now.toLocaleTimeString()}
-        </p>
       </div>
     </div>
   )
