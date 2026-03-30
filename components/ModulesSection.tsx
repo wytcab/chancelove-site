@@ -139,7 +139,7 @@ export function ModulesSection() {
         </h2>
 
         <p className="font-body text-lg text-soft-gray mb-16 max-w-2xl leading-relaxed">
-          Role-specific prompt packs, pre-filled briefing docs, and copy-paste shortcuts. Drop them in and your AI Intern knows exactly what to do — no setup required.
+          Each module is a complete training system: 20–25 role-specific prompts, orientation scripts, weekly/monthly rhythms, full walkthroughs, guardrails, workflows with time estimates, cross-intern references, and 6 checklists — everything your AI Intern needs to perform at a high standard, day one.
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
