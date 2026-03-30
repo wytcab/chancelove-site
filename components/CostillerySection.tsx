@@ -71,6 +71,15 @@ export function CostillerySection() {
         {/* SDKs + links */}
         <div className="flex flex-wrap gap-4 justify-center items-center">
           <a
+            href="https://pypi.org/project/costillery/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body text-sm text-soft-gray hover:text-baby-blue transition-colors px-4 py-3 rounded-xl"
+            style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+          >
+            pip install costillery
+          </a>
+          <a
             href="https://costillery.com"
             target="_blank"
             rel="noopener noreferrer"
@@ -91,16 +100,7 @@ export function CostillerySection() {
             className="font-body text-sm text-soft-gray hover:text-baby-blue transition-colors px-4 py-3 rounded-xl"
             style={{ border: '1px solid rgba(255,255,255,0.08)' }}
           >
-            Documentation →
-          </a>
-          <a
-            href="https://pypi.org/project/costillery/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-body text-sm text-soft-gray hover:text-baby-blue transition-colors px-4 py-3 rounded-xl"
-            style={{ border: '1px solid rgba(255,255,255,0.08)' }}
-          >
-            pip install costillery
+            npm install costillery
           </a>
         </div>
 
