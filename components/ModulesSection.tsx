@@ -96,7 +96,8 @@ export function ModulesSection() {
     {
       id: 'prediction-market',
       title: 'Prediction Market Playbook',
-      name: '$200 Per Trade',
+      name: 'Playbook',
+      nameColor: 'green',
       badge: null,
       price: null,
       description: 'Event contracts, probability trading, market structure, and extracting consistent edges from prediction markets.',

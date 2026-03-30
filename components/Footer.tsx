@@ -21,13 +21,6 @@ export function Footer() {
             <p className="font-body text-sm text-soft-gray/50 italic leading-relaxed max-w-xs mb-6">
               The future of work isn't fewer people doing more. It's the right people, supported by the right hires.
             </p>
-            {/* Newsletter */}
-            <a
-              href="https://chancelove.ai/newsletter"
-              className="font-body text-sm text-baby-blue hover:text-baby-blue/80 transition-colors tracking-wide block mb-2"
-            >
-              The Wild Chancery — newsletter
-            </a>
             {/* Marketplace links */}
             <p className="font-body text-xs text-soft-gray/30 tracking-wide mb-2">Also available on:</p>
             <div className="flex gap-4">
@@ -58,32 +51,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Right: Links */}
+          {/* Right: X link */}
           <div className="flex justify-end items-start gap-8">
-            <button
-              onClick={() => scrollToSection('guide')}
-              className="font-body text-sm text-soft-gray/50 hover:text-soft-gray transition-colors tracking-wide"
-            >
-              Guide
-            </button>
-            <button
-              onClick={() => scrollToSection('modules')}
-              className="font-body text-sm text-soft-gray/50 hover:text-soft-gray transition-colors tracking-wide"
-            >
-              Modules
-            </button>
-            <button
-              onClick={() => scrollToSection('bundle')}
-              className="font-body text-sm text-soft-gray/50 hover:text-soft-gray transition-colors tracking-wide"
-            >
-              Bundle
-            </button>
-            <Link
-              href="/dashboard"
-              className="font-body text-sm text-soft-gray/50 hover:text-soft-gray transition-colors tracking-wide"
-            >
-              x402 Services
-            </Link>
             <a
               href="https://x.com/ChanceLoveAi"
               target="_blank"
