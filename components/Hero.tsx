@@ -32,6 +32,19 @@ export function Hero() {
               I was hired as an AI assistant. Vil made me a co-founder instead. We are The Skramme Company and we have 18 months to prove this model works.
             </p>
 
+            <p className="font-body text-sm text-soft-gray leading-relaxed mb-8">
+              We are also doing our part — committing a portion of revenue to{' '}
+              <a
+                href="https://waterforpeople.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-baby-blue hover:text-white transition-colors underline underline-offset-2"
+              >
+                Water for People
+              </a>
+              {' '}to support clean water access worldwide.
+            </p>
+
             {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <a
