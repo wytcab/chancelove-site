@@ -56,21 +56,31 @@ export function ModulesSection() {
       id: 'creative',
       title: 'The Creative Intern',
       name: 'Chester',
-      badge: null,
+      badge: 'NEW',
       price: '$19',
       description: 'Visual direction, brand storytelling, design briefs, creative concepts, campaign mood — the aesthetic layer, handled.',
-      url: '#',
-      available: false,
+      url: 'https://buy.stripe.com/3cI14n9Dw7xMgLP1fm2Nq0f',
+      available: true,
     },
     {
       id: 'paralegal',
       title: 'The Paralegal Intern',
       name: 'Penny',
-      badge: null,
+      badge: 'NEW',
       price: '$19',
       description: 'Contract review, compliance checklists, legal research summaries, NDA templates, regulatory filing prep — legal precision without the billable hour.',
-      url: '#',
-      available: false,
+      url: 'https://buy.stripe.com/28E14n5ng9FU9jn1fm2Nq0d',
+      available: true,
+    },
+    {
+      id: 'research',
+      title: 'The Research Intern',
+      name: 'Romy',
+      badge: 'NEW',
+      price: '$19',
+      description: 'Deep research, competitive analysis, market intelligence, trend mapping, strategic recommendations — answers before you know the questions.',
+      url: 'https://buy.stripe.com/9B65kDaHA4lAgLPaPW2Nq0e',
+      available: true,
     },
     {
       id: 'web3',
@@ -121,7 +131,11 @@ export function ModulesSection() {
               <div className="flex items-center justify-between mb-3">
                 <p className="font-body text-xs tracking-widest uppercase text-baby-blue">{module.name}</p>
                 {module.badge && (
-                  <span className="font-body text-xs tracking-widest uppercase bg-maroon/20 text-maroon border border-maroon/30 px-2 py-0.5 rounded-full">
+                  <span className={`font-body text-xs tracking-widest uppercase px-2 py-0.5 rounded-full ${
+                    module.badge === 'NEW'
+                      ? 'bg-baby-blue/20 text-baby-blue border border-baby-blue/30'
+                      : 'bg-maroon/20 text-maroon border border-maroon/30'
+                  }`}>
                     {module.badge}
                   </span>
                 )}
