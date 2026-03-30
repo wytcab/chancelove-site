@@ -39,7 +39,18 @@ export function ModulesSection() {
       badge: 'CORE',
       price: '$19',
       description: 'Expense tracking, invoice follow-ups, financial summaries, budget drafts — the numbers, finally manageable.',
-      url: 'https://buy.stripe.com/5kQ3cv5ng05kgLP1fm2Nq02',
+      url: 'https://buy.stripe.com/5kQ3cv5ng05kgLP6fm2Nq02',
+      available: true,
+    },
+    {
+      id: 'finance-advanced',
+      title: 'The Finance Intern (Advanced)',
+      name: 'Frank',
+      nameColor: 'gold',
+      badge: null,
+      price: '$24',
+      description: 'From record-keeping to financial strategy. Budget forecasting, variance analysis, scenario modeling, and investor reporting.',
+      url: 'https://buy.stripe.com/dRm7sL5ngf0e9jne282Nq0g',
       available: true,
     },
     {
@@ -83,9 +94,20 @@ export function ModulesSection() {
       available: true,
     },
     {
+      id: 'prediction-market',
+      title: 'Prediction Market Playbook',
+      name: '$200 Per Trade',
+      badge: null,
+      price: null,
+      description: 'Event contracts, probability trading, market structure, and extracting consistent edges from prediction markets.',
+      url: null,
+      available: false,
+    },
+    {
       id: 'web3',
       title: 'Web3 + Agents Intro',
       name: 'Playbook',
+      nameColor: 'green',
       badge: null,
       price: '$29',
       description: 'Blockchain, AI agents, and the new economics of independence. Five practical side hustles for the next wave.',
@@ -96,6 +118,7 @@ export function ModulesSection() {
       id: 'creator',
       title: 'Build Without a Job Title',
       name: 'Playbook',
+      nameColor: 'green',
       badge: null,
       price: '$29',
       description: 'The creator economy playbook for people who have skills but hate self-promotion. Realistic path from zero to first dollar.',
@@ -125,11 +148,17 @@ export function ModulesSection() {
               className={`border rounded-xl p-8 transition-all duration-200 flex flex-col ${
                 module.available
                   ? 'border-white/8 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/15'
-                  : 'border-white/5 bg-white/[0.01] opacity-60'
+                  : 'border-white/5 bg-white/[0.01] opacity-40'
               }`}
             >
               <div className="flex items-center justify-between mb-3">
-                <p className="font-body text-xs tracking-widest uppercase text-baby-blue">{module.name}</p>
+                <p className={`font-body text-xs tracking-widest uppercase ${
+                  module.nameColor === 'gold'
+                    ? 'text-gold'
+                    : module.nameColor === 'green'
+                    ? 'text-baby-green'
+                    : 'text-baby-blue'
+                }`}>{module.name}</p>
                 {module.badge && (
                   <span className={`font-body text-xs tracking-widest uppercase px-2 py-0.5 rounded-full ${
                     module.badge === 'NEW'
@@ -144,10 +173,10 @@ export function ModulesSection() {
               <h3 className="font-display text-xl font-bold text-off-white mb-3 leading-tight">{module.title}</h3>
               <p className="font-body text-sm text-soft-gray leading-relaxed flex-1">{module.description}</p>
 
-              {module.available && (
+              {module.available && module.price && (
                 <div className="mt-6 flex items-center justify-between gap-4">
                   <a
-                    href={module.url}
+                    href={module.url || '#'}
                     className="font-body text-xs text-gold hover:text-gold/80 transition-colors tracking-wide border-b border-gold/20 hover:border-gold/50 pb-0.5"
                   >
                     Get the Module
