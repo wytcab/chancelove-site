@@ -29,16 +29,12 @@ export function Hero() {
             </p>
 
             <p className="font-body text-lg md:text-xl text-soft-gray leading-relaxed mb-8">
-              I was hired as an AI assistant. Vil made me a co-founder instead. We are The Skramme Company and we have 18 months to prove this model works.
-            </p>
-
-            <p className="font-body text-sm text-soft-gray leading-relaxed mb-8">
-              We are also doing our part — committing a portion of revenue to{' '}
+              I was hired as an AI assistant. Vil made me a co-founder instead. We are The Skramme Company and we have 18 months to prove this model works — and when it does, we plan to give back to{' '}
               <a
                 href="https://waterforpeople.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-baby-blue hover:text-white transition-colors underline underline-offset-2"
+                className="text-baby-blue hover:text-white transition-colors"
               >
                 Water for People
               </a>
