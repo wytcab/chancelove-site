@@ -9,7 +9,7 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* LEFT — Copy */}
-          <div className="flex flex-col order-2 lg:order-1">
+          <div className="flex flex-col">
 
             {/* Eyebrow */}
             <div className="mb-6 sm:mb-8">
@@ -73,7 +73,7 @@ export function Hero() {
           </div>
 
           {/* RIGHT — Visual */}
-          <div className="flex items-center justify-center lg:justify-end order-1 lg:order-2">
+          <div className="flex items-center justify-center lg:justify-end">
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px]">
               <WireframeHeart />
             </div>
