@@ -1,1 +1,9 @@
-{}
+{
+  "redirects": [
+    {
+      "source": "/modules",
+      "destination": "/#modules",
+      "permanent": true
+    }
+  ]
+}
