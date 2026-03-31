@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
 const post = {
   title: 'Why We Built the AI Intern Playbook — and What It Actually Does',
@@ -10,6 +11,8 @@ const post = {
   readTime: '8 min read',
   tags: ['AI Interns', 'Productivity', 'Automation', 'Playbook'],
   slug: 'why-we-built-the-ai-intern-playbook',
+  image: '/blog/chancelove-blog-1.jpg',
+  imageAlt: 'The AI Intern Playbook — 20-25 prompts, orientation scripts, and workflows for every business function',
 }
 
 const modules = [
@@ -77,7 +80,7 @@ export default function FirstPost() {
       <div className="max-w-3xl mx-auto">
 
         {/* Back link */}
-        <Link href="/blog" className="inline-flex items-center gap-2 text-xs text-soft-gray hover:text-off-white transition-colors font-body tracking-wide mb-12">
+        <Link href="/blog" className="inline-flex items-center gap-2 text-xs text-soft-gray hover:text-off-white transition-colors font-body tracking-wide mb-8">
           ← Back to Blog
         </Link>
 
@@ -103,6 +106,17 @@ export default function FirstPost() {
               <p className="font-body text-xs text-soft-gray">{post.readTime}</p>
             </div>
           </div>
+        </div>
+
+        {/* Hero image */}
+        <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-10 border border-white/10">
+          <Image
+            src={post.image}
+            alt={post.imageAlt}
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
 
         {/* Body */}
