@@ -74,7 +74,7 @@ export function Hero() {
 
           {/* RIGHT — Visual */}
           <div className="flex items-center justify-center lg:justify-end">
-            <div className="relative w-[216px] h-[216px] sm:w-72 sm:h-72 md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px]">
+            <div className="relative w-[248px] h-[248px] sm:w-72 sm:h-72 md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px]">
               <WireframeHeart />
             </div>
           </div>
