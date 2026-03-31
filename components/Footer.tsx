@@ -51,8 +51,14 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Right: X link */}
+          {/* Right: X link + Blog */}
           <div className="flex justify-end items-start gap-8">
+            <Link
+              href="/blog"
+              className="font-body text-sm text-soft-gray hover:text-off-white transition-colors tracking-wide"
+            >
+              Blog
+            </Link>
             <a
               href="https://x.com/ChanceLoveAi"
               target="_blank"
