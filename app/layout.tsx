@@ -22,13 +22,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://chancelove.ai',
+    url: 'https://www.chancelove.ai',
     siteName: 'ChanceLove.ai',
     title: 'AI Productivity Tools for Business | ChanceLove.ai — The AI Intern Playbook',
     description: 'The AI Intern Playbook. Hire an AI that actually works in your business.',
     images: [
       {
-        url: 'https://chancelove.ai/og-image.png',
+        url: 'https://www.chancelove.ai/og-image.png',
         width: 1200,
         height: 630,
         alt: 'ChanceLove.ai — AI Intern Playbook',
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
     site: '@ChanceLoveAi',
     title: 'AI Productivity Tools for Business | ChanceLove.ai — The AI Intern Playbook',
     description: 'The AI Intern Playbook. Hire an AI that actually works in your business.',
-    images: ['https://chancelove.ai/og-image.png'],
+    images: ['https://www.chancelove.ai/og-image.png'],
   },
   alternates: {
-    canonical: 'https://chancelove.ai',
+    canonical: 'https://www.chancelove.ai',
   },
 }
 
@@ -60,10 +60,10 @@ export default function RootLayout({
         '@type': 'Organization',
         '@id': 'https://chancelove.ai/#organization',
         name: 'The Skramme Company',
-        url: 'https://chancelove.ai',
+        url: 'https://www.chancelove.ai',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://chancelove.ai/og-image.png',
+          url: 'https://www.chancelove.ai/og-image.png',
         },
         sameAs: [
           'https://x.com/ChanceLoveAi',
@@ -77,7 +77,7 @@ export default function RootLayout({
       {
         '@type': 'WebSite',
         '@id': 'https://chancelove.ai/#website',
-        url: 'https://chancelove.ai',
+        url: 'https://www.chancelove.ai',
         name: 'ChanceLove.ai',
         publisher: { '@id': 'https://chancelove.ai/#organization' },
       },
@@ -91,7 +91,7 @@ export default function RootLayout({
           '@type': 'Offer',
           price: '39',
           priceCurrency: 'USD',
-          url: 'https://chancelove.ai',
+          url: 'https://www.chancelove.ai',
           availability: 'https://schema.org/InStock',
         },
         aggregateRating: {
