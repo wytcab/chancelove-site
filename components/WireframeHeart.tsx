@@ -250,5 +250,5 @@ export function WireframeHeart() {
     }
   }, [])
 
-  return <div ref={mountRef} className="w-full h-full" style={{ minHeight: '500px' }} />
+  return <div ref={mountRef} className="w-full h-full" style={{ width: '100%', height: '100%' }} />
 }

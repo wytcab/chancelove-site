@@ -5,7 +5,7 @@ import { WireframeHeart } from './WireframeHeart'
 export function Hero() {
   return (
     <section className="min-h-screen flex items-center bg-black pt-24 pb-12 sm:pt-28 sm:pb-16">
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto w-full px-5 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* LEFT — Copy */}
@@ -74,7 +74,7 @@ export function Hero() {
 
           {/* RIGHT — Visual */}
           <div className="flex items-center justify-center lg:justify-end">
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px]">
+            <div className="relative w-48 h-48 sm:w-72 sm:h-72 md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px]">
               <WireframeHeart />
             </div>
           </div>
