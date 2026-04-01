@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 
 const post = {
   title: 'Why We Built the AI Intern Playbook — and What It Actually Does',
@@ -108,15 +107,27 @@ export default function FirstPost() {
           </div>
         </div>
 
-        {/* Hero image */}
+        {/* Hero — clean minimalist gradient */}
         <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-10 border border-white/10">
-          <Image
-            src={post.image}
-            alt={post.imageAlt}
-            fill
-            className="object-cover"
-            priority
-          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(160deg, #0a0a0a 0%, #080c14 35%, #0c0c10 65%, #080808 100%)',
+            }}
+          >
+            <div
+              className="absolute bottom-0 left-0 right-0 h-px"
+              style={{ background: 'linear-gradient(90deg, transparent 0%, #93c5fd 30%, #93c5fd 70%, transparent 100%)' }}
+            />
+            <div
+              className="absolute top-6 left-8 w-12 h-px"
+              style={{ background: '#93c5fd' }}
+            />
+            <div
+              className="absolute top-6 left-8 w-px h-8"
+              style={{ background: '#93c5fd' }}
+            />
+          </div>
         </div>
 
         {/* Body */}
